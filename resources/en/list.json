@@ -1,0 +1,88 @@
+{
+	"master": {
+		"lexeme": "",
+		"replacement": {
+			"primary": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"main": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"initiator": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"requester": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"controller": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"host": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"leader": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"director": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			]
+		}
+	},
+	"slave": {
+		"lexeme": "",
+		"replacement": {
+			"secondary": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"subordinate": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"replica": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"target": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"responder": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"device": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"worker": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"proxy": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"follower": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"performer": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			]
+		}
+	},
+	"blacklist": {
+		"lexeme": "",
+		"replacement": {
+			"blocklist": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"denylist": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			]
+		}
+	},
+	"whitelist": {
+		"lexeme": "",
+		"replacement": {
+			"allowlist": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			],
+			"passlist": [
+				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
+			]
+		}
+	}
+}
