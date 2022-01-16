@@ -3,6 +3,22 @@ Multilingual application for inclusive writing.
 
 Languages evolve. Developed in Python, this application helps to write texts in an inclusive way.
 
+## Usage
+To use `inclusive`, specify the language and enter a text
+
+```
+python3 inclusive/main.py en
+```
+
+Here, `en` corresponds to the English language.
+
+It is also possible to specify a file.
+
+```
+python3 inclusive/main.py en filepath
+```
+
+
 ## Resources
 [Resources](resources/README.md): Resources and references to sources in different languages
 
