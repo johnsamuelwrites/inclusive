@@ -1,6 +1,6 @@
 {
 	"master": {
-		"lexeme": "",
+		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L7466",
 		"replacement": {
 			"primary": [
 				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
@@ -29,7 +29,7 @@
 		}
 	},
 	"slave": {
-		"lexeme": "",
+		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L13257",
 		"replacement": {
 			"secondary": [
 				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
@@ -64,7 +64,7 @@
 		}
 	},
 	"blacklist": {
-		"lexeme": "",
+		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L307840",
 		"replacement": {
 			"blocklist": [
 				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
@@ -75,7 +75,7 @@
 		}
 	},
 	"whitelist": {
-		"lexeme": "",
+		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L307842",
 		"replacement": {
 			"allowlist": [
 				"https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst"
