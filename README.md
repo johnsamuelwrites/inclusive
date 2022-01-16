@@ -1,6 +1,9 @@
 # inclusive
 Multilingual application for inclusive writing
 
+## Resources
+[Resources](resources/README.md): Resources and references to sources in different languages
+
 ## Author
 * John Samuel
 
