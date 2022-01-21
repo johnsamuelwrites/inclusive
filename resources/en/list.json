@@ -125,10 +125,26 @@
 			]		
 		}
 	},
+	"guys": {
+		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L4112",
+		"replacement": {
+			"folks": [
+				"https://www.cnet.com/news/twitter-engineers-replace-racially-loaded-tech-terms-like-master-slave/"
+			]		
+		}
+	},
 	"man hour": {
 		"lexeme": "",
 		"replacement": {
 			"person hour": [
+				"https://chromium.googlesource.com/chromium/src/+/master/styleguide/inclusive_code.md"
+			]		
+		}
+	},
+	"man hours": {
+		"lexeme": "",
+		"replacement": {
+			"person hours": [
 				"https://chromium.googlesource.com/chromium/src/+/master/styleguide/inclusive_code.md"
 			]		
 		}
