@@ -1,5 +1,5 @@
 #
-# SPDX-FileCopyrightText: 2020 John Samuel <johnsamuelwrites@gmail.com>
+# SPDX-FileCopyrightText: 2022 John Samuel <johnsamuelwrites@gmail.com>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
@@ -7,26 +7,15 @@
 import json
 
 import typer
-import sys
-import unicodedata
 import re
 from rich import print
+from unicode_utils import get_all_punctuation_separator_characters
+from file_utils import read_file
 
 resource = dict()
 resource["en"] = "./resources/en/list.json"
 
 app = typer.Typer()
-
-def get_all_punctuation_separator_characters():
-    characters = range(sys.maxunicode)
-    # Get all punctuation and characters, i.e., unicode category
-    # belonging to P or Z
-    # Escaping the characters ensures that these can be later used
-    # splitting text
-    punctuations_separator = set(re.escape(chr(i)) for i in characters
-                             if unicodedata.category(chr(i)).startswith("P") or
-                                unicodedata.category(chr(i)).startswith("Z"))
-    return(punctuations_separator)
 
 @app.command()
 def detect(language: str,
@@ -43,8 +32,7 @@ def detect(language: str,
         print("Enter [bold magenta]a text[/bold magenta]:")
         text = input()
     else:
-        with open(filename, "r") as text_file:
-            text = text_file.read()
+        text = read_file(filename)
     punctuations_separator = "|".join(punctuations_separator)
     words = re.split("(" + punctuations_separator + ")", text)
     used_suggestions = set()
