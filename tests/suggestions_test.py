@@ -25,6 +25,11 @@ class SuggestionsTestSuite(unittest.TestCase):
         # There must be at least one suggestion 
         self.assertTrue(len(suggestions) > 0)
 
+    def test_detect_get_suggestions(self):
+        text = "Once the user has installed the packages, he can run the application"
+        used_suggestions, suggestions, updated_text = detect_and_get_suggestions(text)
+        self.assertTrue(updated_text=="Once the user has installed the packages, <change>he</change>  can run the application")
+        self.assertTrue("he" in used_suggestions)
 
 if __name__ == '__main__':
     unittest.main()

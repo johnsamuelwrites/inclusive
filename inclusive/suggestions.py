@@ -10,6 +10,8 @@ import typer
 import re
 from rich import print
 from inclusive.file_utils import read_file
+from inclusive.unicode_utils import get_all_punctuation_separator_characters
+from inclusive.locale_utils import get_default_locale_encoding, get_default_locale_message_handler
 
 
 # File containing links to resources
@@ -38,3 +40,21 @@ def get_suggestions(language: str):
 
     return suggestions
 
+def detect_and_get_suggestions(text):
+    language, encoding = get_default_locale_encoding()
+    punctuations_separator = get_all_punctuation_separator_characters()
+    suggestions = get_suggestions(language)
+
+    punctuations_separator = "|".join(punctuations_separator)
+    words = re.split("(" + punctuations_separator + ")", text)
+    used_suggestions = set()
+    
+    updated_text = ""
+    for word in words:
+        if word.lower() in suggestions:
+            updated_text = updated_text + "<change>" + word + "</change> "
+            used_suggestions.add(word)
+        else:
+            updated_text = updated_text +  word 
+
+    return used_suggestions, suggestions, updated_text
