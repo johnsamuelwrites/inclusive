@@ -1,5 +1,10 @@
 {
 	"en": [
-		"./resources/en/list.json"
+		"./resources/en/list.json",
+		"./resources/en/pronouns.json"
+	],
+	"en_US": [
+		"./resources/en/list.json",
+		"./resources/en/pronouns.json"
 	]
 }

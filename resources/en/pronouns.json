@@ -1,0 +1,34 @@
+{
+	"he": {
+		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L485",
+		"replacement": {
+			"they": [
+				"https://www.cnet.com/news/twitter-engineers-replace-racially-loaded-tech-terms-like-master-slave/"
+			]		
+		}
+	},
+	"him": {
+		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L485",
+		"replacement": {
+			"them": [
+				"https://www.cnet.com/news/twitter-engineers-replace-racially-loaded-tech-terms-like-master-slave/"
+			]		
+		}
+	},
+	"she": {
+		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L484",
+		"replacement": {
+			"they": [
+				"https://www.cnet.com/news/twitter-engineers-replace-racially-loaded-tech-terms-like-master-slave/"
+			]		
+		}
+	},
+	"her": {
+		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L484",
+		"replacement": {
+			"them": [
+				"https://www.cnet.com/news/twitter-engineers-replace-racially-loaded-tech-terms-like-master-slave/"
+			]		
+		}
+	}
+}
