@@ -7,7 +7,7 @@ Languages evolve. Developed in Python, this application helps to write texts in 
 To use `inclusive`, specify the language and enter a text
 
 ```
-python3 inclusive/main.py en
+python -m inclusive.main en
 ```
 
 Here, `en` corresponds to the English language.
@@ -15,7 +15,7 @@ Here, `en` corresponds to the English language.
 It is also possible to specify a file.
 
 ```
-python3 inclusive/main.py en filepath
+python3 -m inclusive.main en filepath
 ```
 
 
@@ -23,9 +23,12 @@ python3 inclusive/main.py en filepath
 [Resources](resources/README.md): Resources and references to sources in different languages
 
 ## Contribute
-There are two ways to contribute:
-* Add a missing language in [resources](./resources) folder.
+There are three ways to contribute:
+* Add a missing language in [resources](./resources) folder and add it to [configuration.json](./configuration.json).
 * Update existing lists of already existing languages. For example, in [English](./resources/en/lists.json).
+* Translate `inclusive`. Check existing or add new [locales](./locales).
+
+A detailed desciption is present [here](./CONTRIBUTE.md)
 
 ## Test cases and coverage
 All the test cases can be run in  the following manner
