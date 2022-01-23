@@ -12,8 +12,11 @@ To use `inclusive`, specify the language and enter a text
 ```
 python -m inclusive.main en
 ```
+![Running inclusive](./screenshot.png "Running inclusive")
 
 Here, `en` corresponds to the English language.
+
+
 
 It is also possible to specify a file.
 
