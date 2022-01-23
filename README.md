@@ -1,7 +1,10 @@
 # inclusive
-Multilingual application for inclusive writing. 
+`inclusive` is a **multilingual application** for **inclusive writing**. Languages evolve. Developed in Python, this application helps to write texts in an inclusive way. The application detects possibly problematic phrases and suggests some replacements. 
 
-Languages evolve. Developed in Python, this application helps to write texts in an inclusive way.
+The application is configurable and it permits the users to add
+* support for new languages
+* add new suggestions to existing languages
+* update suggestions
 
 ## Usage
 To use `inclusive`, specify the language and enter a text
