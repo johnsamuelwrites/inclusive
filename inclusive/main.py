@@ -10,6 +10,7 @@ import typer
 import re
 from rich import print
 from inclusive.file_utils import read_file
+from inclusive.text_utils import read_input_from_terminal
 from inclusive.locale_utils import get_default_locale_message_handler
 from inclusive.suggestions import detect_and_get_suggestions
 
@@ -26,8 +27,9 @@ def detect(language: str,
     _ = get_default_locale_message_handler()
     text = None
     if filename is None:
-        print(_("Enter [bold magenta]a text[/bold magenta]:"))
-        text = input()
+        print(_("Enter [bold magenta]a text[/bold magenta]."), end="")
+        print(_(" Press [bold magenta]Ctrl+D[/bold magenta] to exit:"))
+        text = read_input_from_terminal()
     else:
         text = read_file(filename)
     used_suggestions, suggestions, updated_text = detect_and_get_suggestions(text)

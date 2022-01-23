@@ -98,7 +98,7 @@ def detect_and_get_suggestions(text):
     updated_text = ""
     for word in words:
         if word.lower() in suggestions:
-            updated_text = updated_text + "<change>" + word + "</change> "
+            updated_text = updated_text + "<change>" + word + "</change>"
             used_suggestions.add(word)
         else:
             updated_text = updated_text +  word 
