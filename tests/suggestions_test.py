@@ -1,4 +1,5 @@
 #
+
 # SPDX-FileCopyrightText: 2022 John Samuel <johnsamuelwrites@gmail.com>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
@@ -30,6 +31,24 @@ class SuggestionsTestSuite(unittest.TestCase):
         used_suggestions, suggestions, updated_text = detect_and_get_suggestions(text)
         self.assertTrue(updated_text=="Once the user has installed the packages, <change>he</change>  can run the application")
         self.assertTrue("he" in used_suggestions)
+
+    def test_class_Lexeme(self):
+        lexeme = Lexeme("he", ["https://www.wikidata.org/wiki/Lexeme:L485"])
+        self.assertEqual(str(lexeme), '"he" : [ "https://www.wikidata.org/wiki/Lexeme:L485" ]')
+
+    def test_class_Replacement(self):
+        replacement_lexeme = Lexeme("they", ["https://www.wikidata.org/wiki/Lexeme:L371"])
+        replacement = Replacement(replacement_lexeme,
+                   ["https://en.wikipedia.org/wiki/Inclusive_language"])
+        self.assertEqual(str(replacement), '"they" : { "links" : ["https://www.wikidata.org/wiki/Lexeme:L371"], "references" : ["https://en.wikipedia.org/wiki/Inclusive_language" ] }')
+
+    def test_class_Suggestion(self):
+        lexeme = Lexeme("he", ["https://www.wikidata.org/wiki/Lexeme:L485"])
+        replacement_lexeme = Lexeme("they", ["https://www.wikidata.org/wiki/Lexeme:L371"])
+        replacement = Replacement(replacement_lexeme,
+                   ["https://en.wikipedia.org/wiki/Inclusive_language"])
+        suggestion = Suggestion(lexeme, [replacement])
+        self.assertEqual(str(suggestion), '{ "he" : {"they" : { "links" : ["https://www.wikidata.org/wiki/Lexeme:L371"], "references" : ["https://en.wikipedia.org/wiki/Inclusive_language" ] }}}')
 
 if __name__ == '__main__':
     unittest.main()

@@ -39,8 +39,8 @@ def detect(language: str,
         print("Following are some suggested replacements:")
         for word in used_suggestions:
             print("[bold green]" + word + " [/bold green]: ", end="")
-            for suggestion,references in suggestions[word.lower()]["replacement"].items():
-                print("[bold blue]" + suggestion + "[/bold blue]", end="; ")
+            for replacement_lexeme in suggestions[word.lower()].get_replacement_lexemes():
+                print("[bold blue]" + replacement_lexeme.get_value() + "[/bold blue]", end="; ")
             print()
     print()
 

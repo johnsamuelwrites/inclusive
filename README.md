@@ -25,10 +25,10 @@ python3 -m inclusive.main en filepath
 ## Contribute
 There are three ways to contribute:
 * Add a missing language in [resources](./resources) folder and add it to [configuration.json](./configuration.json).
-* Update existing lists of already existing languages. For example, in [English](./resources/en/lists.json).
+* Update existing lists of already existing languages. For example, in [English](./resources/en/list.json).
 * Translate `inclusive`. Check existing or add new [locales](./locales).
 
-A detailed desciption is present [here](./CONTRIBUTE.md)
+A detailed desciption is present [here](./CONTRIBUTE.md).
 
 ## Test cases and coverage
 All the test cases can be run in  the following manner
