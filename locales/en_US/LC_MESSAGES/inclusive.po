@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: inclusive v0.1\n"
 "Report-Msgid-Bugs-To: John Samuel <johnsamuelwrites@gmail.com>\n"
-"POT-Creation-Date: 2022-01-22 15:48+0100\n"
+"POT-Creation-Date: 2022-01-23 16:43+0100\n"
 "PO-Revision-Date: 2022-01-22 16:14+0100\n"
 "Last-Translator: John Samuel <johnsamuelwrites@gmail.com>\n"
 "Language: en_US\n"
@@ -17,7 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: inclusive/main.py:37
-msgid "Enter [bold magenta]a text[/bold magenta]:"
-msgstr "Enter [bold magenta]a text[/bold magenta]:"
+#: inclusive/main.py:30
+msgid "Enter [bold magenta]a text[/bold magenta]."
+msgstr "Enter [bold magenta]a text[/bold magenta]."
+
+#: inclusive/main.py:31
+msgid " Press [bold magenta]Ctrl+D[/bold magenta] to exit:"
+msgstr " Press [bold magenta]Ctrl+D[/bold magenta] to exit:"
 
