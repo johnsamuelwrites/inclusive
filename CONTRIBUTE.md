@@ -30,6 +30,30 @@ Here, `en` and `en_US` are two locales and the associated list of resources are 
 In this case, the two locales share the same resources. But this may not be the case for all locales.
 
 ## Language suggestion
+A new suggestion for a phrase has the following form. For every phrase (or lexeme), following informations are required:
+1. Links to sources (like Wikidata, Wikitionary or any other dictionary)
+2. One or more replacement suggestions. Each replacement has the following information
+  a. Links to sources (like Wikidata, Wikitionary or any other dictionary)
+  b. One or more eferences to sources (news article, community discussions etc.) which suggest this replacement.
+
+In the following example, *they* is suggested as a replacement for the lexeme *he*. 
+The links for both lexemes are given along with a reference for the suggested replacement.
+```
+{
+        "he": {
+                "lexeme": ["https://www.wikidata.org/wiki/Lexeme:L485"],
+                "replacement": {
+                        "they": {
+                                "lexeme": "https://www.wikidata.org/wiki/Lexeme:L371",
+                                "references": [
+                                        "https://www.cnet.com/news/twitter-engineers-replace-racially-loaded-tech-terms-like-master-slave/"
+                                ]
+                        }
+                }
+        },
+	...
+
+```
 
 ## Translate the application
 
@@ -108,3 +132,10 @@ pybabel compile -d locales -D inclusive
 ```
 
 Now the application will be able to show the updated messages in this language.
+
+Finally, if the code requires new textual strings, these could be extracted for further translation with the folliwing command: 
+
+```
+pybabel extract . -o locales/inclusive.bot
+```
+
