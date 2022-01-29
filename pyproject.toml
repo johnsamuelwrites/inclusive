@@ -3,7 +3,7 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "inclusive"
+name = "inclusivewriting"
 authors = [{name = "John Samuel", email = "johnsamuelwrites@gmail.com"}]
 readme = "README.md"
 license = {file = "LICENSE"}
