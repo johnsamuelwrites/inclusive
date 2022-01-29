@@ -30,7 +30,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test unittests and get code coverage
       run: |
-        pybabel compile -d locales -D inclusive
+        pybabel compile -d locales -D inclusivewriting
         coverage run --source=inclusivewriting -m unittest tests.tests
         coverage report -m
     - name: Generate documentation
