@@ -21,7 +21,7 @@ Here, `en` corresponds to the English language.
 It is also possible to specify a file.
 
 ```
-python3 -m inclusivewriting.main en filepath
+python3 -m inclusivewriting.main en --filepath filepath
 ```
 
 
