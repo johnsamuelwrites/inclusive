@@ -18,12 +18,13 @@ setuptools.setup(
     version=VERSION,
     author="John Samuel",
     author_email="johnsamuelwrites@example.com",
-    description="Tool to generate shape expressions from CSV files",
+    description="Python multilingual application for inclusive writing",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/johnsamuelwrites/inclusive",
     packages=setuptools.find_packages(),
     include_package_data=True,
+    package_data = {'inclusivewriting': [ '*.md', 'configuration.json', 'resources/*', 'resources/*/*'] },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License" +
