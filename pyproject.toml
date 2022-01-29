@@ -17,3 +17,6 @@ Source = "https://github.com/johnsamuelwrites/inclusive"
 
 [tool.flit.sdist]
 include = ["./configuration.json", "resources/"]
+
+[tool.poetry]
+include = ["./configuration.json", "resources/"]
