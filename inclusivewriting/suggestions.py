@@ -5,6 +5,8 @@
 #
 
 import json
+import pkg_resources
+
 
 import typer
 import re
@@ -15,8 +17,8 @@ from inclusivewriting.locale_utils import get_default_locale_encoding, get_defau
 
 def get_all_language_resource_config_file(config_file:str=None):
     # File containing links to resources
-    all_language_resource_file = "./configuration.json"
     if config_file is None or config_file == "":
+       all_language_resource_file = pkg_resources.resource_filename('inclusivewriting', 'configuration.json')
        return all_language_resource_file
     return config_file
 
@@ -111,6 +113,7 @@ def get_suggestions(language: str, config_file:str):
     # Load all the suggestion files for a given language
     if language in resources:
         for suggestion_file in resources[language]:
+            suggestion_file = pkg_resources.resource_filename('inclusivewriting', suggestion_file)
             suggestion_file_data = read_file(suggestion_file)
             suggestion = json.loads(suggestion_file_data)
             for key, value in suggestion.items():

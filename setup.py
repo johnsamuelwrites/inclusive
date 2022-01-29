@@ -24,7 +24,8 @@ setuptools.setup(
     url="https://github.com/johnsamuelwrites/inclusive",
     packages=setuptools.find_packages(),
     include_package_data=True,
-    package_data = {'inclusivewriting': [ '*.md', 'configuration.json', 'resources/*', 'resources/*/*'] },
+    package_dir={'inclusivewriting': 'inclusivewriting'},
+    package_data = {"inclusivewriting": ["resources/configuration.json", "resources/*/*.json"]},
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License" +

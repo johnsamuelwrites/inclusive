@@ -10,7 +10,7 @@ from inclusivewriting.suggestions import *
 
 class SuggestionsTestSuite(unittest.TestCase):
     def setUp(self):
-        self.config_file = "./configuration.json"
+        self.config_file = "./inclusivewriting/configuration.json"
         pass
 
     def test_get_all_language_resources(self):
