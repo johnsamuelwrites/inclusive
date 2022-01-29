@@ -1,3 +1,7 @@
+# v0.7
+===============================================================================
+* Update package to include default configuration file and language resources
+
 # v0.3
 ===============================================================================
 * Use of Flit for Python packaging
