@@ -12,7 +12,7 @@ To use `inclusivewriting`, specify the language and enter a text
 ```
 python -m inclusive.main en
 ```
-![Running inclusivewriting](./screenshot.png "Running inclusivewriting")
+![Running inclusivewriting](./inclusivewriting/screenshot.png "Running inclusivewriting")
 
 Here, `en` corresponds to the English language.
 
@@ -26,15 +26,15 @@ python3 -m inclusivewriting.main en --filepath filepath
 
 
 ## Resources
-[Resources](resources/README.md): Resources and references to sources in different languages
+[Resources](inclusivewriting/resources/README.md): Resources and references to sources in different languages
 
 ## Contribute
 There are three ways to contribute:
-* Add a missing language in [resources](./resources) folder and add it to [configuration.json](./configuration.json).
-* Update existing lists of already existing languages. For example, in [English](./resources/en/list.json).
-* Translate `inclusivewriting`. Check existing or add new [locales](./locales).
+* Add a missing language in [resources](./inclusivewriting/resources) folder and add it to [configuration.json](./inclusivewriting/configuration.json).
+* Update existing lists of already existing languages. For example, in [English](./inclusivewriting/resources/en/list.json).
+* Translate `inclusivewriting`. Check existing or add new [locales](./inclusivewriting/locales).
 
-A detailed desciption is present [here](./CONTRIBUTE.md).
+A detailed desciption is present [here](./inclusivewriting/CONTRIBUTE.md).
 
 ## Test cases and coverage
 All the test cases can be run in  the following manner

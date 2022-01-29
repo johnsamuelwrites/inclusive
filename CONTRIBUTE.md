@@ -2,12 +2,12 @@
 
 ## Contribute
 There are three ways to contribute:
-* Update existing lists of already existing languages. For example, in [English](./resources/en/list.json).
-* Add a missing language in [resources](./resources) folder and add it to [configuration.json](./configuration.json).
-* Translate `inclusivewriting`. Check existing or add new [locales](./locales).
+* Update existing lists of already existing languages. For example, in [English](./inclusivewriting/resources/en/list.json).
+* Add a missing language in [resources](./resources) folder and add it to [configuration.json](./inclusivewriting/configuration.json).
+* Translate `inclusivewriting`. Check existing or add new [locales](./inclusivewriting/locales).
 
 ## Configuration file
-To add suggestions resources for any language (or locale), add it to [configuration.json](./configuration.json)
+To add suggestions resources for any language (or locale), add it to [configuration.json](./inclusivewriting/configuration.json)
 
 ```
 {
