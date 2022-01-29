@@ -5,7 +5,7 @@
 #
 
 import unittest
-from inclusive.file_utils import read_file
+from inclusivewriting.file_utils import read_file
 
 class FileUtilsTestSuite(unittest.TestCase):
     def setUp(self):

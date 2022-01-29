@@ -5,7 +5,7 @@
 #
 
 import unittest
-from inclusive.unicode_utils import get_all_punctuation_separator_characters
+from inclusivewriting.unicode_utils import get_all_punctuation_separator_characters
 
 class UnicodeUtilsTestSuite(unittest.TestCase):
     def setUp(self):

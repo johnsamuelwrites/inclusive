@@ -6,7 +6,7 @@
 #
 
 import unittest
-from inclusive.suggestions import *
+from inclusivewriting.suggestions import *
 
 class SuggestionsTestSuite(unittest.TestCase):
     def setUp(self):

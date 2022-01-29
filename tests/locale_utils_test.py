@@ -5,7 +5,7 @@
 #
 
 import unittest
-from inclusive.locale_utils import *
+from inclusivewriting.locale_utils import *
 
 class LocaleUtilsTestSuite(unittest.TestCase):
     def setUp(self):
