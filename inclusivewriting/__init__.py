@@ -4,6 +4,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
-"""`inclusive` is a **multilingual application** for **inclusive writing**. Languages evolve. Developed in Python, this application helps to write texts in an inclusive way. The application detects possibly problematic phrases and suggests some replacements."""
+"""inclusivewriting is a multilingual application for inclusive writing. Languages evolve. Developed in Python, this application helps to write texts in an inclusive way. The application detects possibly problematic phrases and suggests some replacements."""
 
 __version__ = "0.2"
