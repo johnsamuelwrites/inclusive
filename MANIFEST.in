@@ -1,8 +1,1 @@
-include README.md
-include LICENSE
-include screenshot.png
-include RELEASE.md
-include configuration.json
-recursive-include resources *.json
-recursive-include locales *.po *.mo
-recursive-include tests *.py
+

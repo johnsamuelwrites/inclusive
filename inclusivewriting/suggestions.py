@@ -62,7 +62,7 @@ class Suggestion:
         return "{ " + '"' + str(self.get_lexeme().get_value()) + '" : {'  + ", ".join(str(replacement) for replacement in self.get_replacement_lexemes())  + "}" "}" 
 
 
-def get_all_language_resources(config_file:str):
+def get_all_language_resources(config_file:str=None):
     """
          This method can be used to obtain all the language resources configured in the configuration 
          file. If the configuration file is not specified, the default configuration file is used
@@ -87,7 +87,7 @@ def get_all_language_resources(config_file:str):
     return resources
 
 
-def get_suggestions(language: str, config_file:str):
+def get_suggestions(language: str, config_file:str=None):
     """
          This method can be used to obtain the suggestions for a given language as
          configured in the configuration 
@@ -129,7 +129,7 @@ def get_suggestions(language: str, config_file:str):
 
     return suggestions
 
-def detect_and_get_suggestions(text, config_file:str):
+def detect_and_get_suggestions(text, config_file:str=None):
     """
          This method detects the language/locale and 
          returns the suggestions for the language and the given text.

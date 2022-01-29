@@ -24,6 +24,10 @@ It is also possible to specify a file.
 python3 -m inclusivewriting.main en --filepath filepath
 ```
 
+## Installation
+```
+pip install inclusivewriting
+```
 
 ## Resources
 [Resources](inclusivewriting/resources/README.md): Resources and references to sources in different languages
