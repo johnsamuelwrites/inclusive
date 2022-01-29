@@ -14,25 +14,23 @@ from inclusivewriting.text_utils import read_input_from_terminal
 from inclusivewriting.locale_utils import get_default_locale_message_handler
 from inclusivewriting.suggestions import detect_and_get_suggestions
 
-resource = dict()
-resource["en"] = "./resources/en/list.json"
-
 app = typer.Typer()
-
 
 @app.command()
 def detect(language: str,
-           filename: str = typer.Argument(None, 
+           config: str = typer.Option(None,
+               help="Use a different configuration file"),
+           filepath: str = typer.Option(None, 
                   help="File name; if missing, you will be prompted to enter a text")):
     _ = get_default_locale_message_handler()
     text = None
-    if filename is None:
+    if filepath is None:
         print(_("Enter [bold magenta]a text[/bold magenta]."), end="")
         print(_(" Press [bold magenta]Ctrl+D[/bold magenta] to exit:"))
         text = read_input_from_terminal()
     else:
-        text = read_file(filename)
-    used_suggestions, suggestions, updated_text = detect_and_get_suggestions(text)
+        text = read_file(filepath)
+    used_suggestions, suggestions, updated_text = detect_and_get_suggestions(text, config)
     updated_text = updated_text.replace("<change>", "[bold green]")
     updated_text = updated_text.replace("</change>", "[/bold green]")
     print(updated_text)
