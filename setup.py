@@ -25,7 +25,8 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     include_package_data=True,
     package_dir={'inclusivewriting': 'inclusivewriting'},
-    package_data = {"inclusivewriting": ["configuration.json", "resources/*/*.json", "locales/*"]},
+    package_data = {"inclusivewriting": ["configuration.json", "resources/*/*.json", 
+        "locales/*", "locales/*/*", "locales/*/*/*"]},
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License" +

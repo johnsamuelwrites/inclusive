@@ -12,7 +12,7 @@ To use `inclusivewriting`, specify the language and enter a text
 ```
 python -m inclusive.main en
 ```
-![Running inclusivewriting](./inclusivewriting/screenshot.png "Running inclusivewriting")
+![Running inclusivewriting](https://raw.githubusercontent.com/johnsamuelwrites/inclusive/master/inclusivewriting/screenshot.png "Running inclusivewriting")
 
 Here, `en` corresponds to the English language.
 
