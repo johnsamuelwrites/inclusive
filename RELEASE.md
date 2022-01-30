@@ -1,3 +1,7 @@
+# v0.8
+===============================================================================
+* Update setup.py to correct the handling of locales
+
 # v0.7
 ===============================================================================
 * Update package to include default configuration file and language resources
