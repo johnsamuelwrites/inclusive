@@ -4,14 +4,19 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
-import json
+"""
+Functions to detect posssible issues with an input text
+and to suggest possible replacements.
+"""
 
 import typer
-import re
-from rich import print
+import rich
 from inclusivewriting.file_utils import read_file
 from inclusivewriting.text_utils import read_input_from_terminal
-from inclusivewriting.locale_utils import get_default_locale_message_handler
+from inclusivewriting.locale_utils import (
+    get_default_locale_message_handler,
+    get_default_locale_encoding,
+)
 from inclusivewriting.suggestions import detect_and_get_suggestions
 
 app = typer.Typer()
@@ -25,34 +30,40 @@ def detect(
         None, help="File name; if missing, you will be prompted to enter a text"
     ),
 ):
+    """
+    Detect possible issues in an input text or from a file and
+    show possible suggestions
+    """
     _ = get_default_locale_message_handler()
+    if language is None:
+        language, _ = get_default_locale_encoding()
     text = None
     if filepath is None:
-        print(_("Enter [bold magenta]a text[/bold magenta]."), end="")
-        print(_(" Press [bold magenta]Ctrl+D[/bold magenta] to exit:"))
+        rich.print(_("Enter [bold magenta]a text[/bold magenta]."), end="")
+        rich.print(_(" Press [bold magenta]Ctrl+D[/bold magenta] to exit:"))
         text = read_input_from_terminal()
     else:
         text = read_file(filepath)
     used_suggestions, suggestions, updated_text = detect_and_get_suggestions(
-        text, config
+        language, text, config
     )
     updated_text = updated_text.replace("<change>", "[bold green]")
     updated_text = updated_text.replace("</change>", "[/bold green]")
-    print(updated_text)
-    print()
+    rich.print(updated_text)
+    rich.print()
     if len(used_suggestions) > 0:
-        print("Following are some suggested replacements:")
+        rich.print("Following are some suggested replacements:")
         for word in used_suggestions:
-            print("[bold green]" + word + " [/bold green]: ", end="")
+            rich.print("[bold green]" + word + " [/bold green]: ", end="")
             for replacement_lexeme in suggestions[
                 word.lower()
             ].get_replacement_lexemes():
-                print(
+                rich.print(
                     "[bold blue]" + replacement_lexeme.get_value() + "[/bold blue]",
                     end="; ",
                 )
-            print()
-    print()
+            rich.print()
+    rich.print()
 
 
 if __name__ == "__main__":

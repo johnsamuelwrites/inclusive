@@ -4,22 +4,23 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
+"""
+Functions to handle suggestions for different languages
+"""
+
 import json
+import re
+
 import pkg_resources
 
-
-import typer
-import re
-from rich import print
 from inclusivewriting.file_utils import read_file
 from inclusivewriting.unicode_utils import get_all_punctuation_separator_characters
-from inclusivewriting.locale_utils import (
-    get_default_locale_encoding,
-    get_default_locale_message_handler,
-)
 
 
 def get_all_language_resource_config_file(config_file: str = None):
+    """
+    Get the resource files for all languages
+    """
     # File containing links to resources
     if config_file is None or config_file == "":
         all_language_resource_file = pkg_resources.resource_filename(
@@ -30,14 +31,25 @@ def get_all_language_resource_config_file(config_file: str = None):
 
 
 class Lexeme:
-    def __init__(self, value, links=list()):
+    """
+    A lexeme has a value and associated links.
+    Each link points to a source related to the lexeme.
+    """
+
+    def __init__(self, value, links: list = None):
         self.value = value
         self.links = links
 
-    def get_value(self):
+    def get_value(self) -> str:
+        """
+        Returns the lexeme value (a string)
+        """
         return self.value
 
-    def get_links(self):
+    def get_links(self) -> list:
+        """
+        Returns all the source links related to a lexeme
+        """
         return self.links
 
     def __str__(self):
@@ -46,17 +58,25 @@ class Lexeme:
             + self.get_value()
             + '" : '
             + "[ "
-            + ", ".join('"{0}"'.format(link) for link in self.get_links())
+            + ", ".join(f'"{link}"' for link in self.get_links())
             + " ]"
         )
 
 
 class Replacement:
-    def __init__(self, lexeme, references=list()):
+    """
+    A replacement lexeme and the associated references.
+    Each reference points to a source related to the lexeme.
+    """
+
+    def __init__(self, lexeme, references: list = None):
         self.lexeme = lexeme
         self.references = references
 
-    def get_value(self):
+    def get_value(self) -> str:
+        """
+        Returns the lexeme value (a string)
+        """
         return self.lexeme.get_value()
 
     def __str__(self):
@@ -65,23 +85,33 @@ class Replacement:
             + self.get_value()
             + '" : '
             + '{ "links" : ['
-            + ", ".join('"{0}"'.format(link) for link in self.lexeme.get_links())
+            + ", ".join(f'"{link}"' for link in self.lexeme.get_links())
             + '], "references" : ['
-            + ", ".join('"{0}"'.format(reference) for reference in self.references)
+            + ", ".join(f'"{reference}"' for reference in self.references)
             + " ] "
             "}"
         )
 
 
 class Suggestion:
+    """
+    A suggestion consists of one or more replacement lexemes for a given lexeme.
+    """
+
     def __init__(self, lexeme, replacement_lexemes):
         self.lexeme = lexeme
         self.replacement_lexemes = replacement_lexemes
 
     def get_replacement_lexemes(self):
+        """
+        Returns the replacement lexemes for a given lexeme
+        """
         return self.replacement_lexemes
 
     def get_lexeme(self):
+        """
+        Returns a lexeme for the suggestion
+        """
         return self.lexeme
 
     def __str__(self):
@@ -115,7 +145,7 @@ def get_all_language_resources(config_file: str = None):
 
     """
     config_file = get_all_language_resource_config_file(config_file)
-    resources = dict()
+    resources = {}
     resource_file_string = read_file(config_file)
     resources_parsed_data = json.loads(resource_file_string)
     for key, value in resources_parsed_data.items():
@@ -144,7 +174,7 @@ def get_suggestions(language: str, config_file: str = None):
     """
     config_file = get_all_language_resource_config_file(config_file)
     resources = get_all_language_resources(config_file)
-    suggestions = dict()
+    suggestions = {}
 
     # Load all the suggestion files for a given language
     if language in resources:
@@ -156,7 +186,7 @@ def get_suggestions(language: str, config_file: str = None):
             suggestion = json.loads(suggestion_file_data)
             for key, value in suggestion.items():
                 lexeme = Lexeme(key, value["lexeme"])
-                replacements = list()
+                replacements = []
                 for replacement in value["replacement"]:
                     replacement_lexeme = Lexeme(
                         replacement, value["replacement"][replacement]["lexeme"]
@@ -173,7 +203,7 @@ def get_suggestions(language: str, config_file: str = None):
     return suggestions
 
 
-def detect_and_get_suggestions(text, config_file: str = None):
+def detect_and_get_suggestions(language: str, text, config_file: str = None):
     """
      This method detects the language/locale and
      returns the suggestions for the language and the given text.
@@ -193,7 +223,6 @@ def detect_and_get_suggestions(text, config_file: str = None):
 
     """
     config_file = get_all_language_resource_config_file(config_file)
-    language, encoding = get_default_locale_encoding()
     punctuations_separator = get_all_punctuation_separator_characters()
     suggestions = get_suggestions(language, config_file)
 
