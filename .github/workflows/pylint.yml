@@ -20,4 +20,5 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         pylint $(git ls-files '*.py')
