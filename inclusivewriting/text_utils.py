@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
+
 def read_input_from_terminal():
     text = None
     try:
@@ -13,4 +14,3 @@ def read_input_from_terminal():
         pass
 
     return text
-
