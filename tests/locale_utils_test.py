@@ -4,23 +4,44 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
+"""
+Test suite for locale utils
+"""
+
 import unittest
-from inclusivewriting.locale_utils import *
+from inclusivewriting.locale_utils import (
+    get_default_locale_encoding,
+    get_default_locale_message_handler,
+)
+
 
 class LocaleUtilsTestSuite(unittest.TestCase):
+    """
+    Test cases for locale utils
+    """
+
     def setUp(self):
-        pass
+        """
+        Set up TestSuite
+        """
 
     def test_get_default_locale_message_handler(self):
-        _ = get_default_locale_message_handler() # get message handler
-        # This must return a message handler 
-        self.assertTrue(_ != None)
+        """
+        Test case to verify that there is a default message handler
+        """
+        _ = get_default_locale_message_handler()  # get message handler
+        # This must return a message handler
+        self.assertTrue(_ is not None)
 
     def test_get_default_locale_encoding(self):
-        language, encoding = get_default_locale_encoding() # get locale and encoding
+        """
+        Test case to verify that there is a default locale information
+        """
+        language, encoding = get_default_locale_encoding()  # get locale and encoding
         # These values must not be blank
-        self.assertTrue(language != None)
-        self.assertTrue(encoding != None)
+        self.assertTrue(language is not None)
+        self.assertTrue(encoding is not None)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
