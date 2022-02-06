@@ -1,6 +1,7 @@
 # inclusivewriting
 
 [![Python package](https://github.com/johnsamuelwrites/inclusive/actions/workflows/pythonpackage.yml/badge.svg)](https://github.com/johnsamuelwrites/inclusive/actions/workflows/pythonpackage.yml) 
+[![Pylint](https://github.com/johnsamuelwrites/inclusive/actions/workflows/pylint.yml/badge.svg)](https://github.com/johnsamuelwrites/inclusive/actions/workflows/pylint.yml)
 [![CodeQL](https://github.com/johnsamuelwrites/inclusive/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/johnsamuelwrites/inclusive/actions/workflows/codeql-analysis.yml)
 
 `inclusivewriting` is a **multilingual application** for **inclusive writing**. Languages evolve. Developed in Python, this application helps to write texts in an inclusive way. The application detects possibly problematic phrases and suggests some replacements. 
