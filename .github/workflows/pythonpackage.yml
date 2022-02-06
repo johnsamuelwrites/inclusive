@@ -36,4 +36,5 @@ jobs:
     - name: Generate documentation
       run: |
         rm -rf build/html
+        sphinx-apidoc -o inclusivewriting/resources inclusivewriting/
         sphinx-build -b html inclusivewriting/resources/ build/html
