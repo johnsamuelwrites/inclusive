@@ -1,0 +1,7 @@
+[BASIC]
+# Good variable names
+good-names=author,
+           copyright,
+	   master_doc,
+	   html_theme,
+	   project

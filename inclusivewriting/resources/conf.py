@@ -10,16 +10,18 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+"""
+Configuration file for generating documentation using Sphinx
+"""
 import os
 import sys
-import sphinx_rtd_theme
 sys.path.insert(0, os.path.abspath('..'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'inclusivewriting'
-copyright = '2022, John Samuel'
+project = 'Inclusive Writing'
+#copyright = '2022, John Samuel'
 author = 'John Samuel'
 
 
@@ -47,7 +49,7 @@ exclude_patterns = []
 #
 
 # Reference URL: https://github.com/readthedocs/readthedocs.org/issues/2569
-master_doc = 'README'
+master_doc = 'index'
 
 html_theme = 'sphinx_rtd_theme'
 
@@ -57,5 +59,6 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 source_suffix = {
+    '.rst': 'restructuredtext',
     '.md': 'markdown',
 }
