@@ -6,6 +6,7 @@ Contents
 
    Documentation <README.md>
    en/README.md
+   modules.rst
 
 
 Indices and tables

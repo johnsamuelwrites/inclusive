@@ -207,7 +207,7 @@ def detect_and_get_suggestions(language: str, text, config_file: str = None):
     """
      This method detects the language/locale and
      returns the suggestions for the language and the given text.
-      If the configuration file is not specified, the default configuration file is used
+     If the configuration file is not specified, the default configuration file is used
 
     Parameters
     ----------
