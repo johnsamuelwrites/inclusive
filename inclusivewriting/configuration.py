@@ -9,7 +9,6 @@ Functions to handle suggestions for different languages
 """
 
 import json
-import re
 
 import pkg_resources
 

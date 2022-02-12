@@ -12,6 +12,10 @@ from inclusivewriting.unicode_utils import (
 
 
 def initialize(config_file: str = None):
+    """
+    Initialize the application (if required) by
+    writing the separators/punctuation characters to a file
+    """
     write_all_punctuation_separator_characters_to_resources(config_file)
 
 
