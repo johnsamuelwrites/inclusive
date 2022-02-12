@@ -15,6 +15,18 @@ def read_file(filename):
        filename: name or path of the file to be read
     """
     text = None
-    with open(filename, "r", encoding="utf8") as text_file:
+    with open(filename, "r", encoding="utf-8") as text_file:
         text = text_file.read()
     return text
+
+
+def write_file(filename, text):
+    """
+    Write text to a file
+
+    parameters:
+       filename: name or path of the file to write
+       text: text to write
+    """
+    with open(filename, "w", encoding="utf-8") as text_file:
+        text_file.write(text)

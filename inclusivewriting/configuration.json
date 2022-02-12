@@ -1,4 +1,5 @@
 {
     "en": ["./resources/en/list.json", "./resources/en/pronouns.json"],
-    "en_US": ["./resources/en/list.json", "./resources/en/pronouns.json"]
+    "en_US": ["./resources/en/list.json", "./resources/en/pronouns.json"],
+    "separators" : ["./resources/separators.txt"]
 }

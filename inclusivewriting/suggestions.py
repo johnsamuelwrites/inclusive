@@ -14,20 +14,13 @@ import re
 import pkg_resources
 
 from inclusivewriting.file_utils import read_file
-from inclusivewriting.unicode_utils import get_all_punctuation_separator_characters
-
-
-def get_all_language_resource_config_file(config_file: str = None):
-    """
-    Get the resource files for all languages
-    """
-    # File containing links to resources
-    if config_file is None or config_file == "":
-        all_language_resource_file = pkg_resources.resource_filename(
-            "inclusivewriting", "configuration.json"
-        )
-        return all_language_resource_file
-    return config_file
+from inclusivewriting.unicode_utils import (
+    get_all_punctuation_separator_characters_from_resources,
+)
+from inclusivewriting.configuration import (
+    get_all_language_resources,
+    get_all_language_resource_config_file,
+)
 
 
 class Lexeme:
@@ -128,31 +121,6 @@ class Suggestion:
         )
 
 
-def get_all_language_resources(config_file: str = None):
-    """
-     This method can be used to obtain all the language resources configured in the configuration
-     file. If the configuration file is not specified, the default configuration file is used
-
-    Parameters
-    ----------
-      config_file : str
-        This parameter contains the file path of a congiguration file
-
-    Returns
-    -------
-      resources
-        language resources
-
-    """
-    config_file = get_all_language_resource_config_file(config_file)
-    resources = {}
-    resource_file_string = read_file(config_file)
-    resources_parsed_data = json.loads(resource_file_string)
-    for key, value in resources_parsed_data.items():
-        resources[key] = value
-    return resources
-
-
 def get_suggestions(language: str, config_file: str = None):
     """
      This method can be used to obtain the suggestions for a given language as
@@ -223,7 +191,10 @@ def detect_and_get_suggestions(language: str, text, config_file: str = None):
 
     """
     config_file = get_all_language_resource_config_file(config_file)
-    punctuations_separator = get_all_punctuation_separator_characters()
+    # punctuations_separator = get_all_punctuation_separator_characters()
+    punctuations_separator = get_all_punctuation_separator_characters_from_resources(
+        config_file
+    )
     suggestions = get_suggestions(language, config_file)
 
     punctuations_separator = "|".join(punctuations_separator)
