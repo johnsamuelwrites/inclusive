@@ -68,4 +68,4 @@ def write_all_punctuation_separator_characters_to_resources(config_file: str = N
         separator_file = pkg_resources.resource_filename(
             "inclusivewriting", resources["separators"][0]
         )
-        write_file( separator_file, "|".join(punctuations_separator))
+        write_file(separator_file, "|".join(punctuations_separator))
