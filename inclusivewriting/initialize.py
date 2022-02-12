@@ -6,10 +6,14 @@
 
 """ Initialize the separators"""
 
-from inclusivewriting.unicode_utils import write_all_punctuation_separator_characters_to_resources
+from inclusivewriting.unicode_utils import (
+    write_all_punctuation_separator_characters_to_resources,
+)
+
 
 def initialize(config_file: str = None):
     write_all_punctuation_separator_characters_to_resources(config_file)
+
 
 if __name__ == "__main__":
     initialize()

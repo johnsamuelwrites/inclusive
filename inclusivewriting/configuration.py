@@ -15,6 +15,7 @@ import pkg_resources
 
 from inclusivewriting.file_utils import read_file
 
+
 def get_all_language_resource_config_file(config_file: str = None):
     """
     Get the resource files for all languages
