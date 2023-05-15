@@ -3,6 +3,7 @@
 # Guidelines
 * [Linux kernel coding style](https://github.com/torvalds/linux/blob/master/Documentation/process/coding-style.rst)
 * [Inclusive Chromium code](https://chromium.googlesource.com/chromium/src/+/master/styleguide/inclusive_code.md)
+* [The Inclusive Naming Word Lists](https://inclusivenaming.org/word-lists/) suggested in issue [#1](https://github.com/johnsamuelwrites/inclusive/issues/1)
 
 ## References
 
