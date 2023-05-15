@@ -130,3 +130,6 @@ dmypy.json
 
 # Machine Object (.mo) files
 *.mo
+
+# Code 
+.vscode

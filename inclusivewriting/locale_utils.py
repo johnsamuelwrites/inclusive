@@ -26,9 +26,7 @@ def get_default_locale_message_handler():
     default, _ = get_default_locale_encoding()
     localesdir = pkg_resources.resource_filename("inclusivewriting", "locales")
     lang = gettext.translation(
-        "inclusivewriting", localedir=localesdir, languages=[default],
-        fallback=True
+        "inclusivewriting", localedir=localesdir, languages=[default], fallback=True
     )
-    print(lang)
     lang.install()
     return lang.gettext
