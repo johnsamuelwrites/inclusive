@@ -15,18 +15,18 @@ The application is configurable and it permits the users to add
 To use `inclusivewriting`, specify the language and enter a text
 
 ```
-python -m inclusive.main en
+python -m inclusivewriting en
 ```
+
 ![Running inclusivewriting](https://raw.githubusercontent.com/johnsamuelwrites/inclusive/master/inclusivewriting/screenshot.png "Running inclusivewriting")
 
 Here, `en` corresponds to the English language.
 
 
-
 It is also possible to specify a file.
 
 ```
-python3 -m inclusivewriting.main en --filepath filepath
+python3 -m inclusivewriting en --filepath filepath
 ```
 
 ## Installation
