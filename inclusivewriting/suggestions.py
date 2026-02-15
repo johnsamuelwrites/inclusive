@@ -4,21 +4,16 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
-"""
-Functions to handle suggestions for different languages
-"""
+"""Functions to handle suggestions for different languages."""
 
-import json
-import re
 from typing import Dict, List, Tuple
 
-import pkg_resources
-
-from inclusivewriting.file_utils import read_file
 from inclusivewriting.configuration import (
-    get_all_language_resources,
     get_all_language_resource_config_file,
+    get_all_language_resources,
 )
+from inclusivewriting.rulepacks import load_rulepack
+from inclusivewriting.rules import RuleEngine, RuleMatch
 
 
 class Lexeme:
@@ -193,65 +188,55 @@ def get_suggestions(language: str, config_file: str = None):
 
     """
     config_file = get_all_language_resource_config_file(config_file)
-    resources = get_all_language_resources(config_file)
+    rules = load_rulepack(language, config_file)
+    return _build_suggestions_from_rules(rules)
+
+
+def _build_suggestions_from_rules(rules) -> Dict[str, Suggestion]:
+    """
+    Convert loaded rules to backward-compatible suggestion objects.
+    """
     suggestions: Dict[str, Suggestion] = {}
-
-    # Load all the suggestion files for a given language
-    if language in resources:
-        for suggestion_file in resources[language]:
-            suggestion_file = pkg_resources.resource_filename(
-                "inclusivewriting", suggestion_file
+    for rule in rules:
+        replacement_lexemes = []
+        for replacement in rule.replacements:
+            replacement_lexeme = Lexeme(replacement.value, [])
+            replacement_lexemes.append(
+                Replacement(replacement_lexeme, replacement.references)
             )
-            suggestion_file_data = read_file(suggestion_file)
-            parsed_suggestions = json.loads(suggestion_file_data)
-            if not isinstance(parsed_suggestions, dict):
-                raise ValueError(
-                    f"Invalid suggestion resource format in file: {suggestion_file}"
-                )
-
-            for key, value in parsed_suggestions.items():
-                suggestion_key = key.lower()
-                suggestion_value = _validate_and_build_suggestion(key, value)
-                suggestions[suggestion_key] = suggestion_value
-
+        suggestions[rule.phrase.lower()] = Suggestion(
+            Lexeme(rule.phrase, []), replacement_lexemes
+        )
     return suggestions
 
 
-def _build_phrase_pattern(phrase: str) -> str:
+def _highlighted_text_from_matches(text: str, matches: List[RuleMatch]) -> str:
     """
-    Build a regex for a phrase where spaces are treated as flexible whitespace.
+    Build output text by wrapping matched spans with <change> tags.
     """
-    tokens = phrase.split()
-    return r"\s+".join(re.escape(token) for token in tokens)
+    output = ""
+    cursor = 0
+    for match in matches:
+        output += text[cursor : match.start]
+        output += "<change>" + match.matched_text + "</change>"
+        cursor = match.end
+    output += text[cursor:]
+    return output
 
 
-def _find_suggestion_spans(
-    text: str, suggestion_keys: List[str]
-) -> List[Tuple[int, int, str]]:
+def detect_and_get_rule_matches(
+    language: str, text: str, config_file: str = None
+) -> Tuple[set, Dict[str, Suggestion], str, List[RuleMatch]]:
     """
-    Find non-overlapping phrase spans in text, preferring longer phrases first.
+    Detect possible issues in text and return rule-level matches.
     """
-    spans: List[Tuple[int, int, str]] = []
-    occupied: List[Tuple[int, int]] = []
-    ordered_keys = sorted(set(suggestion_keys), key=lambda key: (-len(key), key))
-
-    for key in ordered_keys:
-        pattern = re.compile(
-            r"(?<!\w)" + _build_phrase_pattern(key) + r"(?!\w)",
-            re.IGNORECASE,
-        )
-        for match in pattern.finditer(text):
-            start, end = match.start(), match.end()
-            if any(
-                start < current_end and end > current_start
-                for current_start, current_end in occupied
-            ):
-                continue
-            occupied.append((start, end))
-            spans.append((start, end, match.group(0)))
-
-    spans.sort(key=lambda span: span[0])
-    return spans
+    config_file = get_all_language_resource_config_file(config_file)
+    rules = load_rulepack(language, config_file)
+    suggestions = _build_suggestions_from_rules(rules)
+    matches = RuleEngine(rules).find_matches(text)
+    used_suggestions = {match.matched_text for match in matches}
+    updated_text = _highlighted_text_from_matches(text, matches)
+    return used_suggestions, suggestions, updated_text, matches
 
 
 def detect_and_get_suggestions(language: str, text, config_file: str = None):
@@ -273,19 +258,7 @@ def detect_and_get_suggestions(language: str, text, config_file: str = None):
         suggestions for the current locale and the given text
 
     """
-    config_file = get_all_language_resource_config_file(config_file)
-    suggestions = get_suggestions(language, config_file)
-
-    used_suggestions = set()
-    spans = _find_suggestion_spans(text, list(suggestions.keys()))
-
-    updated_text = ""
-    cursor = 0
-    for start, end, matched_text in spans:
-        updated_text += text[cursor:start]
-        updated_text += "<change>" + matched_text + "</change>"
-        used_suggestions.add(matched_text)
-        cursor = end
-    updated_text += text[cursor:]
-
+    used_suggestions, suggestions, updated_text, _ = detect_and_get_rule_matches(
+        language, text, config_file
+    )
     return used_suggestions, suggestions, updated_text

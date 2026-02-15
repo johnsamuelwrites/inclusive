@@ -6,6 +6,18 @@ There are three ways to contribute:
 * Add a missing language in [resources](./resources) folder and add it to [configuration.json](./inclusivewriting/configuration.json).
 * Translate `inclusivewriting`. Check existing or add new [locales](./inclusivewriting/locales).
 
+## Development architecture
+The current development model is based on:
+* Rule definitions loaded from JSON resource files (rule-packs)
+* Rule-pack loading and validation in `inclusivewriting/rulepacks.py`
+* Context-aware detection in `inclusivewriting/rules.py`
+
+Contributors changing suggestion resources should run:
+```
+python -m unittest tests.resource_schema_test
+python -m tests.tests
+```
+
 ## Configuration file
 To add suggestions resources for any language (or locale), add it to [configuration.json](./inclusivewriting/configuration.json)
 
@@ -36,6 +48,9 @@ A new suggestion for a phrase has the following form. For every phrase (or lexem
   a. Links to sources (like Wikidata, Wikitionary or any other dictionary)
   b. One or more eferences to sources (news article, community discussions etc.) which suggest this replacement.
 
+The validator accepts `lexeme` values as either a string or a list of strings, but a list is recommended for consistency.
+`replacement.references` may also be a string or a list of strings.
+
 In the following example, *they* is suggested as a replacement for the lexeme *he*. 
 The links for both lexemes are given along with a reference for the suggested replacement.
 ```
@@ -54,6 +69,11 @@ The links for both lexemes are given along with a reference for the suggested re
 	...
 
 ```
+
+### Style guidance for suggestions
+* Keep each phrase as a top-level key (avoid nested phrase entries inside another phrase).
+* Prefer lower-case phrase keys for stable matching.
+* Add at least one reference for each replacement.
 
 ## Translate the application
 

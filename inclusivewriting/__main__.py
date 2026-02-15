@@ -20,7 +20,7 @@ from inclusivewriting.locale_utils import (
     get_default_locale_message_handler,
     get_default_locale_encoding,
 )
-from inclusivewriting.suggestions import detect_and_get_suggestions
+from inclusivewriting.suggestions import detect_and_get_rule_matches
 
 app = typer.Typer()
 
@@ -63,7 +63,7 @@ def detect(
         else:
             text = read_file(filepath)
 
-        used_suggestions, suggestions, updated_text = detect_and_get_suggestions(
+        used_suggestions, suggestions, updated_text, matches = detect_and_get_rule_matches(
             language, text, config
         )
     except Exception as error:
@@ -74,18 +74,23 @@ def detect(
     if output_format == "json":
         output = {
             "language": language,
-            "issues_found": len(sorted_used_suggestions),
+            "issues_found": len(matches),
             "updated_text": updated_text,
-            "matches": [],
+            "matches": [
+                {
+                    "rule_id": match.rule_id,
+                    "start": match.start,
+                    "end": match.end,
+                    "match": match.matched_text,
+                    "replacements": match.replacements,
+                    "severity": match.severity,
+                    "confidence": match.confidence,
+                    "rationale": match.rationale,
+                    "auto_fix_safe": match.auto_fix_safe,
+                }
+                for match in matches
+            ],
         }
-        for word in sorted_used_suggestions:
-            replacement_values = [
-                replacement_lexeme.get_value()
-                for replacement_lexeme in suggestions[word.lower()].get_replacement_lexemes()
-            ]
-            output["matches"].append(
-                {"match": word, "replacements": replacement_values}
-            )
         rich.print(json.dumps(output, ensure_ascii=False, indent=2))
     else:
         updated_text_markup = updated_text.replace("<change>", "[bold green]")
@@ -108,7 +113,7 @@ def detect(
         if not quiet:
             console.print()
 
-    if len(sorted_used_suggestions) > 0:
+    if len(matches) > 0:
         raise typer.Exit(code=1)
     raise typer.Exit(code=0)
 

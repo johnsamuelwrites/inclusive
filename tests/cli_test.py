@@ -69,6 +69,13 @@ class CliTestSuite(unittest.TestCase):
             self.assertEqual(output["issues_found"], 1)
             self.assertEqual(output["matches"][0]["match"].lower(), "man hours")
             self.assertTrue("person hours" in output["matches"][0]["replacements"])
+            self.assertTrue(output["matches"][0]["rule_id"].startswith("en:"))
+            self.assertEqual(output["matches"][0]["start"], 10)
+            self.assertEqual(output["matches"][0]["end"], 19)
+            self.assertTrue("severity" in output["matches"][0])
+            self.assertTrue("confidence" in output["matches"][0])
+            self.assertTrue("rationale" in output["matches"][0])
+            self.assertTrue("auto_fix_safe" in output["matches"][0])
         finally:
             os.unlink(file_path)
 
