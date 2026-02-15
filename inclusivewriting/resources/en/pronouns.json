@@ -3,7 +3,7 @@
 		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L485"],
 		"replacement": {
 			"they": {
-				"lexeme": "https://www.wikidata.org/wiki/Lexeme:L371",
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L371"],
 				"references": [
 					"https://www.cnet.com/news/twitter-engineers-replace-racially-loaded-tech-terms-like-master-slave/"
 				]
@@ -11,10 +11,10 @@
 		}
 	},
 	"him": {
-		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L485",
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L485"],
 		"replacement": {
 			"them": {
-				"lexeme": "https://www.wikidata.org/wiki/Lexeme:L371",
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L371"],
 				"references": [
 					"https://www.cnet.com/news/twitter-engineers-replace-racially-loaded-tech-terms-like-master-slave/"
 				]
@@ -22,10 +22,10 @@
 		}
 	},
 	"she": {
-		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L484",
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L484"],
 		"replacement": {
 			"they": {
-				"lexeme": "https://www.wikidata.org/wiki/Lexeme:L371",
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L371"],
 				"references": [
 					"https://www.cnet.com/news/twitter-engineers-replace-racially-loaded-tech-terms-like-master-slave/"
 				]
@@ -33,12 +33,34 @@
 		}
 	},
 	"her": {
-		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L484",
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L484"],
 		"replacement": {
 			"them": {
-				"lexeme": "https://www.wikidata.org/wiki/Lexeme:L371",
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L371"],
 				"references": [
 					"https://www.cnet.com/news/twitter-engineers-replace-racially-loaded-tech-terms-like-master-slave/"
+				]
+			}
+		}
+	},
+	"he/she": {
+		"lexeme": [],
+		"replacement": {
+			"they": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L371"],
+				"references": [
+					"https://en.wikipedia.org/wiki/Gender-neutral_language_in_English"
+				]
+			}
+		}
+	},
+	"s/he": {
+		"lexeme": [],
+		"replacement": {
+			"they": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L371"],
+				"references": [
+					"https://en.wikipedia.org/wiki/Gender-neutral_language_in_English"
 				]
 			}
 		}

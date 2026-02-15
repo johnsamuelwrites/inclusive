@@ -53,7 +53,7 @@
 		}
 	},
 	"slave": {
-		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L13257",
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L13257"],
 		"replacement": {
 			"secondary": {
 				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L327366"],
@@ -118,7 +118,7 @@
 		}
 	},
 	"blacklist": {
-		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L307840",
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L307840"],
 		"replacement": {
 			"blocklist": {
 				"lexeme": [],
@@ -135,7 +135,7 @@
 		}
 	},
 	"whitelist": {
-		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L307842",
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L307842"],
 		"replacement": {
 			"allowlist": {
 				"lexeme": [],
@@ -152,7 +152,7 @@
 		}
 	},
 	"guy": {
-		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L4112",
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L4112"],
 		"replacement": {
 			"folk": {
 				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L7930"],
@@ -163,7 +163,7 @@
 		}
 	},
 	"guys": {
-		"lexeme": "https://www.wikidata.org/wiki/Lexeme:L4112",
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L4112"],
 		"replacement": {
 			"folks": {
 				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L7930"],
@@ -173,8 +173,138 @@
 			}
 		}
 	},
+	"chairman": {
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L249635"],
+		"replacement": {
+			"chairperson": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L90937"],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"chair": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L17326"],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"mankind": {
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L37805"],
+		"replacement": {
+			"humankind": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L615133"],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"humanity": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L30658"],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"manpower": {
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L102664"],
+		"replacement": {
+			"workforce": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L123007"],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"staffing": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L92406"],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"freshman": {
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L70008"],
+		"replacement": {
+			"first-year student": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"middleman": {
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L149214"],
+		"replacement": {
+			"intermediary": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L61269"],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"go-between": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"man-made": {
+		"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L82034"],
+		"replacement": {
+			"artificial": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L8783"],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"synthetic": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L16382"],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"grandfathered": {
+		"lexeme": [],
+		"replacement": {
+			"legacy": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L9734"],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"exempted": {
+				"lexeme": ["https://www.wikidata.org/wiki/Lexeme:L207162"],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"sanity check": {
+		"lexeme": [],
+		"replacement": {
+			"quick check": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"confidence check": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
 	"man hour": {
-		"lexeme": "",
+		"lexeme": [],
 		"replacement": {
 			"person hour": {
 				"lexeme": [],
@@ -185,7 +315,7 @@
 		}
 	},
 	"man hours": {
-		"lexeme": "",
+		"lexeme": [],
 		"replacement": {
 			"person hours": {
 				"lexeme": [],

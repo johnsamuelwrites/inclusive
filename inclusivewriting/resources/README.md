@@ -2,6 +2,10 @@
 
 * [English](en/README.md)
 
+This folder contains:
+* language resources (e.g., `en/*.json`, `separators.txt`)
+* Sphinx documentation sources (`index.rst`, `modules.rst`, `inclusivewriting*.rst`, `conf.py`)
+
 ## Validation
 Resource files are validated in tests:
 * `python -m unittest tests.resource_schema_test`

@@ -5,3 +5,4 @@ inclusivewriting
    :maxdepth: 4
 
    inclusivewriting
+   inclusivewriting.resources
