@@ -43,7 +43,7 @@ class LocaleUtilsTestSuite(unittest.TestCase):
         self.assertTrue(language is not None)
         self.assertTrue(encoding is not None)
 
-    @patch("inclusivewriting.locale_utils.locale.getencoding", return_value=None)
+    @patch("inclusivewriting.locale_utils._get_locale_encoding", return_value=None)
     @patch("inclusivewriting.locale_utils.locale.getlocale", return_value=(None, None))
     def test_get_default_locale_encoding_fallback(self, _, __):
         """

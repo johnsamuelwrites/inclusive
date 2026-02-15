@@ -8,7 +8,10 @@
 
 from typing import Dict, List, Tuple
 
-from inclusivewriting.configuration import get_all_language_resource_config_file
+from inclusivewriting.configuration import (
+    get_all_language_resource_config_file,
+    get_all_language_resources as _configuration_language_resources,
+)
 from inclusivewriting.rulepacks import load_rulepack
 from inclusivewriting.schema_utils import normalize_string_list
 from inclusivewriting.rules import RuleEngine, RuleMatch
@@ -114,10 +117,6 @@ class Suggestion:
 
 def get_all_language_resources(config_file: str = None):
     """Backward-compatible re-export from configuration module."""
-    from inclusivewriting.configuration import (
-        get_all_language_resources as _configuration_language_resources,
-    )
-
     return _configuration_language_resources(config_file)
 
 

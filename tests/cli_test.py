@@ -38,15 +38,23 @@ class CliTestSuite(unittest.TestCase):
             temp_file.write(content)
         return path
 
+    def _invoke_detect(self, arguments):
+        """
+        Invoke detect command in a Typer-version-compatible way.
+        """
+        result = self.runner.invoke(app, ["detect"] + arguments)
+        if result.exit_code == 2:
+            result = self.runner.invoke(app, arguments)
+        return result
+
     def test_detect_exit_code_when_issues_found(self):
         """
         Detect command should return exit code 1 when issues are found.
         """
         file_path = self._write_temp_file("The user said he will do it.")
         try:
-            result = self.runner.invoke(
-                app,
-                ["en", "--filepath", file_path, "--quiet", "--no-color"],
+            result = self._invoke_detect(
+                ["en", "--filepath", file_path, "--quiet", "--no-color"]
             )
             self.assertEqual(result.exit_code, 1)
             self.assertTrue("<change>he</change>" not in result.stdout)
@@ -60,9 +68,8 @@ class CliTestSuite(unittest.TestCase):
         """
         file_path = self._write_temp_file("Estimated man hours.")
         try:
-            result = self.runner.invoke(
-                app,
-                ["en", "--filepath", file_path, "--format", "json"],
+            result = self._invoke_detect(
+                ["en", "--filepath", file_path, "--format", "json"]
             )
             self.assertEqual(result.exit_code, 1)
             output = json.loads(result.stdout)
@@ -85,9 +92,7 @@ class CliTestSuite(unittest.TestCase):
         """
         file_path = self._write_temp_file("This sentence is inclusive.")
         try:
-            result = self.runner.invoke(
-                app, ["en", "--filepath", file_path, "--quiet"]
-            )
+            result = self._invoke_detect(["en", "--filepath", file_path, "--quiet"])
             self.assertEqual(result.exit_code, 0)
         finally:
             os.unlink(file_path)
@@ -98,8 +103,8 @@ class CliTestSuite(unittest.TestCase):
         """
         file_path = self._write_temp_file("This sentence is inclusive.")
         try:
-            result = self.runner.invoke(
-                app, ["en", "--filepath", file_path, "--format", "yaml"]
+            result = self._invoke_detect(
+                ["en", "--filepath", file_path, "--format", "yaml"]
             )
             self.assertEqual(result.exit_code, 2)
         finally:

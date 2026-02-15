@@ -11,12 +11,21 @@ import gettext
 import pkg_resources
 
 
+def _get_locale_encoding() -> str:
+    """
+    Return locale encoding in a Python-version-compatible way.
+    """
+    if hasattr(locale, "getencoding"):
+        return locale.getencoding()
+    return locale.getpreferredencoding(False)
+
+
 def get_default_locale_encoding():
     """
     Get default locale information
     """
     default_locale, _ = locale.getlocale()
-    encoding = locale.getencoding()
+    encoding = _get_locale_encoding()
 
     if default_locale is None or default_locale == "":
         default_locale = "en_US"

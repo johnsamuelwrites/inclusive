@@ -21,6 +21,7 @@ class RuleReplacement:
 
 
 @dataclass
+# pylint: disable=too-many-instance-attributes
 class Rule:
     """A context-aware language rule."""
 
@@ -45,6 +46,7 @@ class Rule:
 
 @dataclass
 # pylint: disable=too-few-public-methods
+# pylint: disable=too-many-instance-attributes
 class RuleMatch:
     """A match produced by the rule engine."""
 
@@ -95,14 +97,21 @@ class RuleEngine:
         matches: List[RuleMatch] = []
         occupied_spans: List[tuple] = []
         ordered_rules = sorted(
-            self.rules, key=lambda current_rule: (-len(current_rule.phrase), current_rule.rule_id)
+            self.rules,
+            key=lambda current_rule: (
+                -len(current_rule.phrase),
+                current_rule.rule_id,
+            ),
         )
 
         for rule in ordered_rules:
             pattern = rule.compile_pattern()
             for candidate in pattern.finditer(text):
                 start, end = candidate.start(), candidate.end()
-                if any(start < other_end and end > other_start for other_start, other_end in occupied_spans):
+                if any(
+                    start < other_end and end > other_start
+                    for other_start, other_end in occupied_spans
+                ):
                     continue
 
                 context = self._context_for_span(text, start, end)
@@ -116,7 +125,9 @@ class RuleEngine:
                         start=start,
                         end=end,
                         matched_text=candidate.group(0),
-                        replacements=[replacement.value for replacement in rule.replacements],
+                        replacements=[
+                            replacement.value for replacement in rule.replacements
+                        ],
                         severity=rule.severity,
                         confidence=rule.confidence,
                         rationale=rule.rationale,

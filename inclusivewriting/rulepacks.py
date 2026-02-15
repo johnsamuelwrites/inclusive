@@ -83,7 +83,7 @@ def validate_rulepack(language: str, config_file: str = None) -> List[str]:
     errors = []
     try:
         rules = load_rulepack(language, config_file)
-    except Exception as error:  # pragma: no cover - tested by behavior
+    except (OSError, ValueError, json.JSONDecodeError) as error:
         return [str(error)]
 
     seen_ids = set()

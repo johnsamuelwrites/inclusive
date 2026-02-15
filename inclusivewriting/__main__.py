@@ -26,6 +26,10 @@ app = typer.Typer()
 
 
 @app.command()
+# pylint: disable=too-many-arguments
+# pylint: disable=too-many-positional-arguments
+# pylint: disable=too-many-locals
+# pylint: disable=too-many-branches
 def detect(
     language: str,
     config: str = typer.Option(None, help="Use a different configuration file"),
