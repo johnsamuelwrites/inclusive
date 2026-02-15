@@ -9,6 +9,7 @@ Test suite for locale utils
 """
 
 import unittest
+from unittest.mock import patch
 from inclusivewriting.locale_utils import (
     get_default_locale_encoding,
     get_default_locale_message_handler,
@@ -41,6 +42,16 @@ class LocaleUtilsTestSuite(unittest.TestCase):
         # These values must not be blank
         self.assertTrue(language is not None)
         self.assertTrue(encoding is not None)
+
+    @patch("inclusivewriting.locale_utils.locale.getencoding", return_value=None)
+    @patch("inclusivewriting.locale_utils.locale.getlocale", return_value=(None, None))
+    def test_get_default_locale_encoding_fallback(self, _, __):
+        """
+        Test locale fallback values when system locale details are unavailable.
+        """
+        language, encoding = get_default_locale_encoding()
+        self.assertEqual(language, "en_US")
+        self.assertEqual(encoding, "utf-8")
 
 
 if __name__ == "__main__":

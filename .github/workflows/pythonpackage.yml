@@ -34,6 +34,9 @@ jobs:
         pybabel compile -d inclusivewriting/locales -D inclusivewriting
         coverage run --source=inclusivewriting -m unittest tests.tests
         coverage report -m
+    - name: Validate resource schema
+      run: |
+        python -m unittest tests.resource_schema_test
     - name: Generate documentation
       run: |
         rm -rf build/html

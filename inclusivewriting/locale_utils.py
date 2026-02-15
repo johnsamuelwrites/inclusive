@@ -15,8 +15,14 @@ def get_default_locale_encoding():
     """
     Get default locale information
     """
-    default, encoding = locale.getdefaultlocale()
-    return default, encoding
+    default_locale, _ = locale.getlocale()
+    encoding = locale.getencoding()
+
+    if default_locale is None or default_locale == "":
+        default_locale = "en_US"
+    if encoding is None or encoding == "":
+        encoding = "utf-8"
+    return default_locale, encoding
 
 
 def get_default_locale_message_handler():

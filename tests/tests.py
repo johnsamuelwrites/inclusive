@@ -14,6 +14,7 @@ from tests.file_utils_test import FileUtilsTestSuite
 from tests.locale_utils_test import LocaleUtilsTestSuite
 from tests.suggestions_test import SuggestionsTestSuite
 from tests.cli_test import CliTestSuite
+from tests.resource_schema_test import ResourceSchemaTestSuite
 
 if __name__ == "__main__":
     unicode_utils_tests = UnicodeUtilsTestSuite()
@@ -21,6 +22,7 @@ if __name__ == "__main__":
     suggestions_tests = SuggestionsTestSuite()
     locales_tests = LocaleUtilsTestSuite()
     cli_tests = CliTestSuite()
+    resource_schema_tests = ResourceSchemaTestSuite()
     tests = unittest.TestSuite(
         [
             unicode_utils_tests,
@@ -28,6 +30,7 @@ if __name__ == "__main__":
             suggestions_tests,
             locales_tests,
             cli_tests,
+            resource_schema_tests,
         ]
     )
     unittest.main()
