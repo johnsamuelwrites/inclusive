@@ -8,11 +8,9 @@
 
 from typing import Dict, List, Tuple
 
-from inclusivewriting.configuration import (
-    get_all_language_resource_config_file,
-    get_all_language_resources,
-)
+from inclusivewriting.configuration import get_all_language_resource_config_file
 from inclusivewriting.rulepacks import load_rulepack
+from inclusivewriting.schema_utils import normalize_string_list
 from inclusivewriting.rules import RuleEngine, RuleMatch
 
 
@@ -114,19 +112,13 @@ class Suggestion:
         )
 
 
-def _normalize_link_list(field_name: str, value) -> List[str]:
-    """
-    Normalize a link-like field to a list of strings.
-    """
-    if value is None:
-        return []
-    if isinstance(value, str):
-        return [value]
-    if isinstance(value, list) and all(isinstance(item, str) for item in value):
-        return value
-    raise ValueError(
-        f'Invalid "{field_name}" format: expected string or list of strings'
+def get_all_language_resources(config_file: str = None):
+    """Backward-compatible re-export from configuration module."""
+    from inclusivewriting.configuration import (
+        get_all_language_resources as _configuration_language_resources,
     )
+
+    return _configuration_language_resources(config_file)
 
 
 def _validate_and_build_suggestion(key: str, value: dict) -> Suggestion:
@@ -148,7 +140,7 @@ def _validate_and_build_suggestion(key: str, value: dict) -> Suggestion:
             f'Invalid suggestion "{key}": "replacement" must be an object'
         )
 
-    lexeme = Lexeme(key, _normalize_link_list("lexeme", value.get("lexeme")))
+    lexeme = Lexeme(key, normalize_string_list("lexeme", value.get("lexeme")))
     replacements = []
     for replacement_word, replacement_data in value["replacement"].items():
         if not isinstance(replacement_data, dict):
@@ -158,9 +150,9 @@ def _validate_and_build_suggestion(key: str, value: dict) -> Suggestion:
 
         replacement_lexeme = Lexeme(
             replacement_word,
-            _normalize_link_list("replacement.lexeme", replacement_data.get("lexeme")),
+            normalize_string_list("replacement.lexeme", replacement_data.get("lexeme")),
         )
-        references = _normalize_link_list(
+        references = normalize_string_list(
             "replacement.references", replacement_data.get("references")
         )
         replacements.append(Replacement(replacement_lexeme, references))

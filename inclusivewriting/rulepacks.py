@@ -16,19 +16,8 @@ from inclusivewriting.configuration import (
     get_all_language_resources,
 )
 from inclusivewriting.file_utils import read_file
+from inclusivewriting.schema_utils import normalize_string_list
 from inclusivewriting.rules import Rule, RuleReplacement
-
-
-def _normalize_str_list(field_name: str, value) -> List[str]:
-    if value is None:
-        return []
-    if isinstance(value, str):
-        return [value]
-    if isinstance(value, list) and all(isinstance(item, str) for item in value):
-        return value
-    raise ValueError(
-        f'Invalid "{field_name}" format: expected string or list of strings'
-    )
 
 
 def _build_rule(language: str, phrase: str, payload: Dict) -> Rule:
@@ -46,7 +35,7 @@ def _build_rule(language: str, phrase: str, payload: Dict) -> Rule:
         replacements.append(
             RuleReplacement(
                 value=replacement_value,
-                references=_normalize_str_list(
+                references=normalize_string_list(
                     "replacement.references", replacement_payload.get("references")
                 ),
             )

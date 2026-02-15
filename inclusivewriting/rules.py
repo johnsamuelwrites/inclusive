@@ -12,6 +12,7 @@ from typing import List, Pattern
 
 
 @dataclass
+# pylint: disable=too-few-public-methods
 class RuleReplacement:
     """A replacement option for a rule."""
 
@@ -43,6 +44,7 @@ class Rule:
 
 
 @dataclass
+# pylint: disable=too-few-public-methods
 class RuleMatch:
     """A match produced by the rule engine."""
 
