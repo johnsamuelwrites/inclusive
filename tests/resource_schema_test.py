@@ -11,10 +11,9 @@ Test suite for validating resource schema consistency
 import json
 import unittest
 
-import pkg_resources
-
 from inclusivewriting.configuration import get_all_language_resources
 from inclusivewriting.file_utils import read_file
+from inclusivewriting.path_utils import package_file_path
 from inclusivewriting.suggestions import _validate_and_build_suggestion
 
 
@@ -33,7 +32,7 @@ class ResourceSchemaTestSuite(unittest.TestCase):
                 continue
 
             for resource_file in resource_files:
-                path = pkg_resources.resource_filename("inclusivewriting", resource_file)
+                path = package_file_path(resource_file)
                 parsed_data = json.loads(read_file(path))
                 self.assertTrue(isinstance(parsed_data, dict))
                 for key, value in parsed_data.items():

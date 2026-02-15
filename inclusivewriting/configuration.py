@@ -10,9 +10,8 @@ Functions to handle suggestions for different languages
 
 import json
 
-import pkg_resources
-
 from inclusivewriting.file_utils import read_file
+from inclusivewriting.path_utils import package_file_path
 
 
 def get_all_language_resource_config_file(config_file: str = None):
@@ -21,9 +20,7 @@ def get_all_language_resource_config_file(config_file: str = None):
     """
     # File containing links to resources
     if config_file is None or config_file == "":
-        all_language_resource_file = pkg_resources.resource_filename(
-            "inclusivewriting", "configuration.json"
-        )
+        all_language_resource_file = package_file_path("configuration.json")
         return all_language_resource_file
     return config_file
 

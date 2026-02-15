@@ -9,13 +9,12 @@
 import json
 from typing import Dict, List
 
-import pkg_resources
-
 from inclusivewriting.configuration import (
     get_all_language_resource_config_file,
     get_all_language_resources,
 )
 from inclusivewriting.file_utils import read_file
+from inclusivewriting.path_utils import package_file_path
 from inclusivewriting.schema_utils import normalize_string_list
 from inclusivewriting.rules import Rule, RuleReplacement
 
@@ -64,7 +63,7 @@ def load_rulepack(language: str, config_file: str = None) -> List[Rule]:
 
     rules: List[Rule] = []
     for relative_path in resources.get(language, []):
-        full_path = pkg_resources.resource_filename("inclusivewriting", relative_path)
+        full_path = package_file_path(relative_path)
         parsed = json.loads(read_file(full_path))
         if not isinstance(parsed, dict):
             raise ValueError(f"Invalid resource format in file: {relative_path}")

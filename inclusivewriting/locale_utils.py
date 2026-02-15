@@ -8,7 +8,7 @@
 
 import locale
 import gettext
-import pkg_resources
+from inclusivewriting.path_utils import package_file_path
 
 
 def _get_locale_encoding() -> str:
@@ -39,7 +39,7 @@ def get_default_locale_message_handler():
     Get default locale information and the locale handler
     """
     default, _ = get_default_locale_encoding()
-    localesdir = pkg_resources.resource_filename("inclusivewriting", "locales")
+    localesdir = package_file_path("locales")
     lang = gettext.translation(
         "inclusivewriting", localedir=localesdir, languages=[default], fallback=True
     )
