@@ -1,5 +1,7 @@
 {
     "en": ["./resources/en/list.json", "./resources/en/pronouns.json"],
     "en_US": ["./resources/en/list.json", "./resources/en/pronouns.json"],
+    "fr": ["./resources/fr/list.json", "./resources/fr/pronouns.json"],
+    "fr_FR": ["./resources/fr/list.json", "./resources/fr/pronouns.json"],
     "separators" : ["./resources/separators.txt"]
 }

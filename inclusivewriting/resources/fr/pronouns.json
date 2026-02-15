@@ -1,0 +1,35 @@
+{
+  "il": {
+    "lexeme": [],
+    "replacement": {
+      "iel": {
+        "lexeme": [],
+        "references": [
+          "https://fr.wikipedia.org/wiki/Langage_epicene"
+        ]
+      }
+    }
+  },
+  "elle": {
+    "lexeme": [],
+    "replacement": {
+      "iel": {
+        "lexeme": [],
+        "references": [
+          "https://fr.wikipedia.org/wiki/Langage_epicene"
+        ]
+      }
+    }
+  },
+  "il/elle": {
+    "lexeme": [],
+    "replacement": {
+      "iel": {
+        "lexeme": [],
+        "references": [
+          "https://fr.wikipedia.org/wiki/Langage_epicene"
+        ]
+      }
+    }
+  }
+}

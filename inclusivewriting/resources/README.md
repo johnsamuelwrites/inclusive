@@ -1,6 +1,7 @@
 # Resources
 
 * [English](en/README.md)
+* [French](fr/README.md)
 
 This folder contains:
 * language resources (e.g., `en/*.json`, `separators.txt`)

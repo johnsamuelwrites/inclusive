@@ -6,6 +6,7 @@ Contents
 
    Documentation <README.md>
    en/README.md
+   fr/README.md
    modules.rst
 
 

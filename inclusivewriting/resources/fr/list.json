@@ -1,0 +1,98 @@
+{
+  "maître": {
+    "lexeme": [],
+    "replacement": {
+      "principal": {
+        "lexeme": [],
+        "references": [
+          "https://inclusivenaming.org/word-lists/"
+        ]
+      },
+      "primaire": {
+        "lexeme": [],
+        "references": [
+          "https://inclusivenaming.org/word-lists/"
+        ]
+      }
+    }
+  },
+  "esclave": {
+    "lexeme": [],
+    "replacement": {
+      "secondaire": {
+        "lexeme": [],
+        "references": [
+          "https://inclusivenaming.org/word-lists/"
+        ]
+      },
+      "réplique": {
+        "lexeme": [],
+        "references": [
+          "https://inclusivenaming.org/word-lists/"
+        ]
+      }
+    }
+  },
+  "liste noire": {
+    "lexeme": [],
+    "replacement": {
+      "liste de blocage": {
+        "lexeme": [],
+        "references": [
+          "https://inclusivenaming.org/word-lists/"
+        ]
+      },
+      "liste d'interdiction": {
+        "lexeme": [],
+        "references": [
+          "https://inclusivenaming.org/word-lists/"
+        ]
+      }
+    }
+  },
+  "liste blanche": {
+    "lexeme": [],
+    "replacement": {
+      "liste d'autorisation": {
+        "lexeme": [],
+        "references": [
+          "https://inclusivenaming.org/word-lists/"
+        ]
+      },
+      "liste de validation": {
+        "lexeme": [],
+        "references": [
+          "https://inclusivenaming.org/word-lists/"
+        ]
+      }
+    }
+  },
+  "homme-heure": {
+    "lexeme": [],
+    "replacement": {
+      "personne-heure": {
+        "lexeme": [],
+        "references": [
+          "https://inclusivenaming.org/word-lists/"
+        ]
+      }
+    }
+  },
+  "test de bon sens": {
+    "lexeme": [],
+    "replacement": {
+      "vérification rapide": {
+        "lexeme": [],
+        "references": [
+          "https://inclusivenaming.org/word-lists/"
+        ]
+      },
+      "vérification de cohérence": {
+        "lexeme": [],
+        "references": [
+          "https://inclusivenaming.org/word-lists/"
+        ]
+      }
+    }
+  }
+}
