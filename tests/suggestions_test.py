@@ -17,6 +17,7 @@ from inclusivewriting.suggestions import (
     Lexeme,
     Replacement,
     Suggestion,
+    _validate_and_build_suggestion,
 )
 
 
@@ -114,6 +115,31 @@ class SuggestionsTestSuite(unittest.TestCase):
         )
         self.assertTrue("he" in used_suggestions)
         self.assertTrue(len(suggestions) > 0)
+
+    def test_detect_multiword_suggestions(self):
+        """
+        Verify that multi-word suggestions are detected.
+        """
+        text = "Estimated man hour and man hours."
+        used_suggestions, suggestions, updated_text = detect_and_get_suggestions(
+            "en", text, self.config_file
+        )
+        self.assertTrue(
+            updated_text
+            == "Estimated <change>man hour</change> and <change>man hours</change>."
+        )
+        self.assertTrue("man hour" in used_suggestions)
+        self.assertTrue("man hours" in used_suggestions)
+        self.assertTrue(len(suggestions) > 0)
+
+    def test_suggestion_schema_validation(self):
+        """
+        Verify that invalid suggestion entries are rejected.
+        """
+        with self.assertRaises(ValueError):
+            _validate_and_build_suggestion(
+                "test phrase", {"lexeme": [], "replacement": {}, "unexpected": {}}
+            )
 
     def test_class_lexeme(self):
         """

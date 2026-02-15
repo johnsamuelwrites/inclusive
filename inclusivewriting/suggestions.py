@@ -10,13 +10,11 @@ Functions to handle suggestions for different languages
 
 import json
 import re
+from typing import Dict, List, Tuple
 
 import pkg_resources
 
 from inclusivewriting.file_utils import read_file
-from inclusivewriting.unicode_utils import (
-    get_all_punctuation_separator_characters_from_resources,
-)
 from inclusivewriting.configuration import (
     get_all_language_resources,
     get_all_language_resource_config_file,
@@ -31,7 +29,7 @@ class Lexeme:
 
     def __init__(self, value, links: list = None):
         self.value = value
-        self.links = links
+        self.links = links or []
 
     def get_value(self) -> str:
         """
@@ -64,7 +62,7 @@ class Replacement:
 
     def __init__(self, lexeme, references: list = None):
         self.lexeme = lexeme
-        self.references = references
+        self.references = references or []
 
     def get_value(self) -> str:
         """
@@ -121,6 +119,60 @@ class Suggestion:
         )
 
 
+def _normalize_link_list(field_name: str, value) -> List[str]:
+    """
+    Normalize a link-like field to a list of strings.
+    """
+    if value is None:
+        return []
+    if isinstance(value, str):
+        return [value]
+    if isinstance(value, list) and all(isinstance(item, str) for item in value):
+        return value
+    raise ValueError(
+        f'Invalid "{field_name}" format: expected string or list of strings'
+    )
+
+
+def _validate_and_build_suggestion(key: str, value: dict) -> Suggestion:
+    """
+    Validate and convert a resource entry into an in-memory Suggestion.
+    """
+    if not isinstance(value, dict):
+        raise ValueError(f'Invalid suggestion "{key}": entry must be an object')
+
+    allowed_entry_fields = {"lexeme", "replacement"}
+    extra_fields = set(value.keys()) - allowed_entry_fields
+    if extra_fields:
+        raise ValueError(
+            f'Invalid suggestion "{key}": unexpected fields {sorted(extra_fields)}'
+        )
+
+    if "replacement" not in value or not isinstance(value["replacement"], dict):
+        raise ValueError(
+            f'Invalid suggestion "{key}": "replacement" must be an object'
+        )
+
+    lexeme = Lexeme(key, _normalize_link_list("lexeme", value.get("lexeme")))
+    replacements = []
+    for replacement_word, replacement_data in value["replacement"].items():
+        if not isinstance(replacement_data, dict):
+            raise ValueError(
+                f'Invalid replacement "{replacement_word}" in "{key}": entry must be an object'
+            )
+
+        replacement_lexeme = Lexeme(
+            replacement_word,
+            _normalize_link_list("replacement.lexeme", replacement_data.get("lexeme")),
+        )
+        references = _normalize_link_list(
+            "replacement.references", replacement_data.get("references")
+        )
+        replacements.append(Replacement(replacement_lexeme, references))
+
+    return Suggestion(lexeme, replacements)
+
+
 def get_suggestions(language: str, config_file: str = None):
     """
      This method can be used to obtain the suggestions for a given language as
@@ -142,7 +194,7 @@ def get_suggestions(language: str, config_file: str = None):
     """
     config_file = get_all_language_resource_config_file(config_file)
     resources = get_all_language_resources(config_file)
-    suggestions = {}
+    suggestions: Dict[str, Suggestion] = {}
 
     # Load all the suggestion files for a given language
     if language in resources:
@@ -151,24 +203,55 @@ def get_suggestions(language: str, config_file: str = None):
                 "inclusivewriting", suggestion_file
             )
             suggestion_file_data = read_file(suggestion_file)
-            suggestion = json.loads(suggestion_file_data)
-            for key, value in suggestion.items():
-                lexeme = Lexeme(key, value["lexeme"])
-                replacements = []
-                for replacement in value["replacement"]:
-                    replacement_lexeme = Lexeme(
-                        replacement, value["replacement"][replacement]["lexeme"]
-                    )
-                    replacement = Replacement(
-                        replacement_lexeme,
-                        value["replacement"][replacement]["references"],
-                    )
-                    replacements.append(replacement)
+            parsed_suggestions = json.loads(suggestion_file_data)
+            if not isinstance(parsed_suggestions, dict):
+                raise ValueError(
+                    f"Invalid suggestion resource format in file: {suggestion_file}"
+                )
 
-                suggestion_value = Suggestion(lexeme, replacements)
-                suggestions[key] = suggestion_value
+            for key, value in parsed_suggestions.items():
+                suggestion_key = key.lower()
+                suggestion_value = _validate_and_build_suggestion(key, value)
+                suggestions[suggestion_key] = suggestion_value
 
     return suggestions
+
+
+def _build_phrase_pattern(phrase: str) -> str:
+    """
+    Build a regex for a phrase where spaces are treated as flexible whitespace.
+    """
+    tokens = phrase.split()
+    return r"\s+".join(re.escape(token) for token in tokens)
+
+
+def _find_suggestion_spans(
+    text: str, suggestion_keys: List[str]
+) -> List[Tuple[int, int, str]]:
+    """
+    Find non-overlapping phrase spans in text, preferring longer phrases first.
+    """
+    spans: List[Tuple[int, int, str]] = []
+    occupied: List[Tuple[int, int]] = []
+    ordered_keys = sorted(set(suggestion_keys), key=lambda key: (-len(key), key))
+
+    for key in ordered_keys:
+        pattern = re.compile(
+            r"(?<!\w)" + _build_phrase_pattern(key) + r"(?!\w)",
+            re.IGNORECASE,
+        )
+        for match in pattern.finditer(text):
+            start, end = match.start(), match.end()
+            if any(
+                start < current_end and end > current_start
+                for current_start, current_end in occupied
+            ):
+                continue
+            occupied.append((start, end))
+            spans.append((start, end, match.group(0)))
+
+    spans.sort(key=lambda span: span[0])
+    return spans
 
 
 def detect_and_get_suggestions(language: str, text, config_file: str = None):
@@ -191,22 +274,18 @@ def detect_and_get_suggestions(language: str, text, config_file: str = None):
 
     """
     config_file = get_all_language_resource_config_file(config_file)
-    # punctuations_separator = get_all_punctuation_separator_characters()
-    punctuations_separator = get_all_punctuation_separator_characters_from_resources(
-        config_file
-    )
     suggestions = get_suggestions(language, config_file)
 
-    punctuations_separator = "|".join(punctuations_separator)
-    words = re.split("(" + punctuations_separator + ")", text)
     used_suggestions = set()
+    spans = _find_suggestion_spans(text, list(suggestions.keys()))
 
     updated_text = ""
-    for word in words:
-        if word.lower() in suggestions:
-            updated_text = updated_text + "<change>" + word + "</change>"
-            used_suggestions.add(word)
-        else:
-            updated_text = updated_text + word
+    cursor = 0
+    for start, end, matched_text in spans:
+        updated_text += text[cursor:start]
+        updated_text += "<change>" + matched_text + "</change>"
+        used_suggestions.add(matched_text)
+        cursor = end
+    updated_text += text[cursor:]
 
     return used_suggestions, suggestions, updated_text

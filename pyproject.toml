@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "inclusivewriting"
+dynamic = ["version"]
+description = "Python multilingual application for inclusive writing"
+readme = "README.md"
+requires-python = ">=3.7"
+license = { text = "GPL-3.0-or-later" }
+authors = [
+  { name = "John Samuel", email = "johnsamuelwrites@example.com" }
+]
+dependencies = [
+  "rich>=10.9.0",
+  "typer>=0.3.2",
+  "babel>=2.9.1",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/johnsamuelwrites/inclusive"
+
+[project.optional-dependencies]
+dev = [
+  "black>=22.1.0",
+]
+docs = [
+  "sphinx>=4.4.0",
+  "myst_parser>=0.16.1",
+  "sphinx-rtd-theme>=1.0.0",
+]
+test = [
+  "coverage",
+]
+
+[tool.setuptools.dynamic]
+version = { attr = "inclusivewriting.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["inclusivewriting*"]
+
+[tool.setuptools.package-data]
+inclusivewriting = [
+  "configuration.json",
+  "resources/*/*.json",
+  "locales/*",
+  "locales/*/*",
+  "locales/*/*/*",
+]

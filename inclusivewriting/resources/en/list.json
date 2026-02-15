@@ -182,16 +182,16 @@
 					"https://chromium.googlesource.com/chromium/src/+/master/styleguide/inclusive_code.md"
 				]
 			}
-		},
-		"man hours": {
-			"lexeme": "",
-			"replacement": {
-				"person hours": {
-					"lexeme": [],
-					"references": [
-						"https://chromium.googlesource.com/chromium/src/+/master/styleguide/inclusive_code.md"
-					]
-				}
+		}
+	},
+	"man hours": {
+		"lexeme": "",
+		"replacement": {
+			"person hours": {
+				"lexeme": [],
+				"references": [
+					"https://chromium.googlesource.com/chromium/src/+/master/styleguide/inclusive_code.md"
+				]
 			}
 		}
 	}
