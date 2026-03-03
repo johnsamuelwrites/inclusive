@@ -6,61 +6,70 @@
   <title>Inclusive Writing</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     /* ── Theme tokens ────────────────────────────────────────────── */
     :root {
-      --bg:              #090e1c;
-      --bg-grad:         radial-gradient(ellipse 90% 55% at 50% -10%, rgba(99,102,241,.18) 0%, transparent 68%);
-      --surface:         rgba(255,255,255,.045);
-      --surface-h:       rgba(255,255,255,.07);
-      --border:          rgba(255,255,255,.08);
-      --border-focus:    rgba(99,102,241,.7);
+      --bg:              #05080f;
+      --bg-grad:         radial-gradient(ellipse 120% 60% at 50% -5%, rgba(99,102,241,.22) 0%, transparent 65%);
+      --surface:         rgba(255,255,255,.038);
+      --surface-h:       rgba(255,255,255,.065);
+      --surface-doc:     rgba(99,102,241,.06);
+      --border:          rgba(255,255,255,.07);
+      --border-focus:    rgba(99,102,241,.75);
+      --border-doc:      rgba(99,102,241,.2);
       --accent:          #6366f1;
       --accent-end:      #8b5cf6;
       --accent-cyan:     #22d3ee;
-      --accent-glow:     rgba(99,102,241,.28);
+      --accent-glow:     rgba(99,102,241,.32);
+      --accent-cyan-glow:rgba(34,211,238,.2);
       --text:            #e2e8f0;
       --text-2:          #94a3b8;
-      --text-3:          #4b5563;
-      --success-bg:      rgba(34,197,94,.09);
-      --success-bd:      rgba(34,197,94,.28);
+      --text-3:          #3d4f66;
+      --success-bg:      rgba(34,197,94,.08);
+      --success-bd:      rgba(34,197,94,.25);
       --success-fg:      #4ade80;
-      --warn-bg:         rgba(251,191,36,.07);
-      --warn-bd:         rgba(251,191,36,.22);
+      --warn-bg:         rgba(251,191,36,.06);
+      --warn-bd:         rgba(251,191,36,.2);
       --warn-phrase:     #fbbf24;
       --warn-arrow:      #475569;
-      --repl-bg:         rgba(52,211,153,.1);
-      --repl-bd:         rgba(52,211,153,.22);
+      --repl-bg:         rgba(52,211,153,.09);
+      --repl-bd:         rgba(52,211,153,.2);
       --repl-fg:         #34d399;
-      --error-bg:        rgba(248,113,113,.09);
-      --error-bd:        rgba(248,113,113,.28);
+      --error-bg:        rgba(248,113,113,.08);
+      --error-bd:        rgba(248,113,113,.25);
       --error-fg:        #f87171;
-      --info-bg:         rgba(99,102,241,.1);
-      --info-bd:         rgba(99,102,241,.28);
+      --info-bg:         rgba(99,102,241,.09);
+      --info-bd:         rgba(99,102,241,.25);
       --info-fg:         #a5b4fc;
-      --mark-bg:         rgba(251,191,36,.22);
+      --mark-bg:         rgba(251,191,36,.2);
       --mark-fg:         #fbbf24;
-      --input-bg:        rgba(0,0,0,.25);
-      --badge-bg:        rgba(99,102,241,.12);
-      --badge-bd:        rgba(99,102,241,.28);
+      --input-bg:        rgba(0,0,0,.3);
+      --badge-bg:        rgba(99,102,241,.1);
+      --badge-bd:        rgba(99,102,241,.25);
       --badge-fg:        #a5b4fc;
-      --r:               14px;
-      --r-sm:            9px;
+      --code-bg:         rgba(0,0,0,.4);
+      --code-bd:         rgba(99,102,241,.18);
+      --code-fg:         #a5b4fc;
+      --r:               16px;
+      --r-sm:            10px;
       --ease:            .18s ease;
     }
 
     [data-theme="light"] {
-      --bg:              #eef2fb;
-      --bg-grad:         radial-gradient(ellipse 90% 55% at 50% -10%, rgba(79,70,229,.12) 0%, transparent 68%);
-      --surface:         rgba(255,255,255,.78);
-      --surface-h:       rgba(255,255,255,.95);
-      --border:          rgba(99,102,241,.12);
+      --bg:              #edf1fb;
+      --bg-grad:         radial-gradient(ellipse 120% 60% at 50% -5%, rgba(79,70,229,.13) 0%, transparent 65%);
+      --surface:         rgba(255,255,255,.82);
+      --surface-h:       rgba(255,255,255,.96);
+      --surface-doc:     rgba(79,70,229,.05);
+      --border:          rgba(99,102,241,.11);
       --border-focus:    rgba(79,70,229,.55);
+      --border-doc:      rgba(79,70,229,.18);
       --accent:          #4f46e5;
       --accent-end:      #7c3aed;
       --accent-cyan:     #0891b2;
       --accent-glow:     rgba(79,70,229,.18);
+      --accent-cyan-glow:rgba(8,145,178,.15);
       --text:            #0f172a;
       --text-2:          #475569;
       --text-3:          #94a3b8;
@@ -86,22 +95,95 @@
       --badge-bg:        rgba(79,70,229,.07);
       --badge-bd:        rgba(79,70,229,.18);
       --badge-fg:        #4f46e5;
+      --code-bg:         rgba(79,70,229,.06);
+      --code-bd:         rgba(79,70,229,.15);
+      --code-fg:         #4f46e5;
+      --text-3:          #94a3b8;
     }
 
     /* ── Reset ───────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ── Body + animated background ──────────────────────────────── */
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      background-image: var(--bg-grad);
+      background-color: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      padding: 0 16px 80px;
+      padding: 0 16px 100px;
       transition: background-color var(--ease), color var(--ease);
+      position: relative;
+      overflow-x: hidden;
     }
 
-    .wrap { max-width: 760px; margin: 0 auto; }
+    /* Gradient aurora layer */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: var(--bg-grad);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Animated grid */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(99,102,241,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,.04) 1px, transparent 1px);
+      background-size: 52px 52px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    [data-theme="light"] body::after {
+      background-image:
+        linear-gradient(rgba(79,70,229,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,70,229,.05) 1px, transparent 1px);
+    }
+
+    /* Floating glow orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+      animation: drift 18s ease-in-out infinite alternate;
+      opacity: .55;
+      will-change: transform;
+    }
+    .orb-1 {
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(99,102,241,.18) 0%, transparent 70%);
+      top: -120px; left: -80px;
+      animation-duration: 22s;
+    }
+    .orb-2 {
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(139,92,246,.14) 0%, transparent 70%);
+      top: 40%; right: -100px;
+      animation-duration: 16s;
+      animation-delay: -8s;
+    }
+    .orb-3 {
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(34,211,238,.1) 0%, transparent 70%);
+      bottom: 10%; left: 10%;
+      animation-duration: 20s;
+      animation-delay: -4s;
+    }
+    [data-theme="light"] .orb { opacity: .35; }
+
+    @keyframes drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(30px, -20px) scale(1.06); }
+      100% { transform: translate(-20px, 30px) scale(.96); }
+    }
+
+    .wrap { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
 
     /* ── Header ──────────────────────────────────────────────────── */
     header {
@@ -109,42 +191,69 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 16px;
-      padding: 52px 0 38px;
+      padding: 60px 0 44px;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 11px;
-      margin-bottom: 10px;
+      gap: 13px;
+      margin-bottom: 12px;
     }
 
     .logo-gem {
-      width: 38px; height: 38px;
-      border-radius: 11px;
+      width: 44px; height: 44px;
+      border-radius: 14px;
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-end) 100%);
       display: flex; align-items: center; justify-content: center;
-      font-size: 19px;
-      box-shadow: 0 0 22px var(--accent-glow);
+      font-size: 21px;
+      box-shadow: 0 0 28px var(--accent-glow), 0 0 60px var(--accent-glow);
       flex-shrink: 0;
-      transition: box-shadow var(--ease);
+      position: relative;
+    }
+    /* Animate opacity on a pseudo-element (compositor-only, no Paint) */
+    .logo-gem::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 18px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      opacity: .6;
+      animation: gem-pulse 4s ease-in-out infinite;
+      will-change: opacity;
+      pointer-events: none;
+    }
+    @keyframes gem-pulse {
+      0%, 100% { opacity: .5; }
+      50%       { opacity: 1; }
     }
 
     h1 {
-      font-size: 1.85rem;
-      font-weight: 700;
-      letter-spacing: -.03em;
-      background: linear-gradient(90deg, var(--text) 30%, var(--text-2) 100%);
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1.1;
+      background: linear-gradient(90deg, var(--text) 20%, var(--accent) 60%, var(--accent-cyan) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
+    .tagline {
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+      opacity: .8;
+    }
+
     .subtitle {
       font-size: .875rem;
       color: var(--text-2);
-      line-height: 1.65;
-      max-width: 500px;
+      line-height: 1.7;
+      max-width: 520px;
     }
     .subtitle a {
       color: var(--accent-cyan);
@@ -153,63 +262,69 @@
     }
     .subtitle a:hover { opacity: .75; text-decoration: underline; }
 
-    .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      padding: 3px 10px;
+      padding: 4px 11px;
       border-radius: 20px;
       background: var(--badge-bg);
       border: 1px solid var(--badge-bd);
       color: var(--badge-fg);
-      font-size: .71rem;
-      font-weight: 500;
-      letter-spacing: .03em;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      transition: border-color var(--ease), box-shadow var(--ease);
+    }
+    .badge:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
     }
 
     /* ── Theme toggle ────────────────────────────────────────────── */
     #theme-btn {
       flex-shrink: 0;
-      width: 42px; height: 42px;
-      border-radius: 12px;
+      width: 44px; height: 44px;
+      border-radius: 13px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text-2);
       cursor: pointer;
-      font-size: 17px;
+      font-size: 18px;
       display: flex; align-items: center; justify-content: center;
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
       transition: all var(--ease);
-      margin-top: 4px;
+      margin-top: 6px;
     }
     #theme-btn:hover {
       background: var(--surface-h);
       color: var(--text);
       border-color: var(--accent);
-      box-shadow: 0 0 14px var(--accent-glow);
+      box-shadow: 0 0 18px var(--accent-glow);
     }
 
     /* ── Glass card ──────────────────────────────────────────────── */
     .card {
       background: var(--surface);
-      -webkit-backdrop-filter: blur(18px);
-      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
       border: 1px solid var(--border);
       border-radius: var(--r);
       padding: 28px;
       margin-bottom: 14px;
       transition: background var(--ease), border-color var(--ease);
     }
+    .card:hover { border-color: rgba(99,102,241,.18); }
 
     /* ── Status ──────────────────────────────────────────────────── */
     #status {
       display: flex;
       align-items: center;
       gap: 13px;
-      padding: 13px 17px;
+      padding: 14px 18px;
       background: var(--info-bg);
       border: 1px solid var(--info-bd);
       border-radius: var(--r-sm);
@@ -225,7 +340,6 @@
     }
     #status.hidden { display: none; }
 
-    /* animated dots */
     .dots { display: flex; gap: 4px; align-items: center; flex-shrink: 0; }
     .dots i {
       display: block;
@@ -247,10 +361,10 @@
 
     label {
       display: block;
-      font-size: .72rem;
-      font-weight: 600;
+      font-size: .7rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .08em;
+      letter-spacing: .1em;
       color: var(--text-3);
       margin-bottom: 7px;
     }
@@ -267,7 +381,7 @@
       transition: border-color var(--ease), box-shadow var(--ease);
     }
     select {
-      padding: 10px 36px 10px 13px;
+      padding: 11px 36px 11px 14px;
       cursor: pointer;
       appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8.5 1 3.5h10z'/%3E%3C/svg%3E");
@@ -275,10 +389,10 @@
       background-position: right 13px center;
     }
     textarea {
-      padding: 13px 14px;
+      padding: 14px 15px;
       resize: vertical;
       min-height: 160px;
-      line-height: 1.75;
+      line-height: 1.8;
     }
     select:focus, textarea:focus {
       border-color: var(--border-focus);
@@ -288,22 +402,31 @@
     /* ── Button ──────────────────────────────────────────────────── */
     #analyze-btn {
       width: 100%;
-      padding: 13px;
+      padding: 14px;
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-end) 100%);
       color: #fff;
       border: none;
       border-radius: var(--r-sm);
       font-family: inherit;
       font-size: .95rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      letter-spacing: .01em;
-      box-shadow: 0 4px 22px var(--accent-glow);
+      letter-spacing: .02em;
+      box-shadow: 0 4px 24px var(--accent-glow);
       transition: opacity var(--ease), box-shadow var(--ease), transform var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    #analyze-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.12) 0%, transparent 60%);
+      pointer-events: none;
     }
     #analyze-btn:hover:not(:disabled) {
-      opacity: .9;
-      box-shadow: 0 6px 32px var(--accent-glow);
+      opacity: .92;
+      box-shadow: 0 6px 36px var(--accent-glow);
       transform: translateY(-1px);
     }
     #analyze-btn:active:not(:disabled) { transform: translateY(0); }
@@ -312,16 +435,17 @@
     .shortcut-hint {
       display: block;
       text-align: right;
-      font-size: .71rem;
+      font-size: .7rem;
       color: var(--text-3);
-      margin-top: 7px;
-      letter-spacing: .02em;
+      margin-top: 8px;
+      letter-spacing: .03em;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     /* ── Results ─────────────────────────────────────────────────── */
-    #results { animation: rise .28s ease; will-change: transform, opacity; }
+    #results { animation: rise .3s ease; will-change: transform, opacity; }
     @keyframes rise {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
@@ -329,26 +453,27 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .count-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 28px; height: 24px;
-      padding: 0 8px;
+      min-width: 30px; height: 26px;
+      padding: 0 9px;
       border-radius: 20px;
-      background: rgba(251,191,36,.15);
+      background: rgba(251,191,36,.14);
       border: 1px solid rgba(251,191,36,.3);
       color: #fbbf24;
       font-size: .78rem;
-      font-weight: 700;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
     }
     .result-label { font-size: .9rem; font-weight: 600; color: var(--text-2); }
 
     .ok-msg {
       display: flex; align-items: center; gap: 10px;
-      padding: 14px 17px;
+      padding: 15px 18px;
       background: var(--success-bg);
       border: 1px solid var(--success-bd);
       border-radius: var(--r-sm);
@@ -359,7 +484,7 @@
 
     .err-msg {
       display: flex; align-items: flex-start; gap: 10px;
-      padding: 14px 17px;
+      padding: 15px 18px;
       background: var(--error-bg);
       border: 1px solid var(--error-bd);
       border-radius: var(--r-sm);
@@ -368,72 +493,288 @@
       word-break: break-word;
     }
 
+    /* Text preview — shown ABOVE the issue list */
+    .preview-title {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--text-3);
+      margin-bottom: 9px;
+    }
+
+    .text-preview {
+      padding: 16px 18px;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      line-height: 1.95;
+      white-space: pre-wrap;
+      font-size: .9rem;
+      color: var(--text-2);
+      word-break: break-word;
+      margin-bottom: 22px;
+    }
+
+    mark {
+      background: var(--mark-bg);
+      color: var(--mark-fg);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    /* Issue list — shown BELOW the preview */
+    .issues-label {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--text-3);
+      margin-bottom: 9px;
+    }
+
     .issue-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
 
     .issue {
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      padding: 12px 15px;
+      padding: 13px 16px;
       background: var(--warn-bg);
       border: 1px solid var(--warn-bd);
       border-radius: var(--r-sm);
       font-size: .88rem;
       line-height: 1.55;
-      transition: background var(--ease);
+      transition: background var(--ease), border-color var(--ease);
     }
-    .issue:hover { background: rgba(251,191,36,.11); }
+    .issue:hover {
+      background: rgba(251,191,36,.1);
+      border-color: rgba(251,191,36,.32);
+    }
 
     .issue-ico { flex-shrink: 0; font-size: .8rem; margin-top: 2px; }
     .issue-body { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
-    .issue-phrase { font-weight: 700; color: var(--warn-phrase); }
+    .issue-phrase { font-weight: 700; color: var(--warn-phrase); font-family: 'JetBrains Mono', monospace; font-size: .82rem; }
     .issue-arrow { color: var(--warn-arrow); font-size: .8rem; }
     .repl-chips { display: flex; flex-wrap: wrap; gap: 5px; }
     .chip {
       display: inline-block;
-      padding: 2px 9px;
+      padding: 2px 10px;
       border-radius: 20px;
       background: var(--repl-bg);
       border: 1px solid var(--repl-bd);
       color: var(--repl-fg);
+      font-size: .77rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── Contribute / Documentation panel ────────────────────────── */
+    .doc-card {
+      background: var(--surface-doc);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-doc);
+      border-radius: var(--r);
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: border-color var(--ease);
+    }
+    .doc-card:hover { border-color: rgba(99,102,241,.35); }
+
+    .doc-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+      transition: background var(--ease);
+    }
+    .doc-toggle:hover { background: rgba(99,102,241,.05); }
+
+    .doc-toggle-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .doc-icon {
+      width: 32px; height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-end) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
+    .doc-toggle-title {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .doc-toggle-sub {
       font-size: .78rem;
-      font-weight: 500;
-    }
-
-    .preview-title {
-      font-size: .71rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--text-3);
-      margin: 22px 0 9px;
-    }
-
-    .text-preview {
-      padding: 15px 17px;
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--r-sm);
-      line-height: 1.9;
-      white-space: pre-wrap;
-      font-size: .9rem;
       color: var(--text-2);
-      word-break: break-word;
+      margin-top: 1px;
+    }
+    .doc-chevron {
+      color: var(--text-3);
+      font-size: 1rem;
+      transition: transform .22s ease;
+      flex-shrink: 0;
+    }
+    .doc-card.open .doc-chevron { transform: rotate(180deg); }
+
+    .doc-body {
+      display: none;
+      padding: 0 24px 24px;
+    }
+    .doc-card.open .doc-body { display: block; }
+
+    .doc-divider {
+      height: 1px;
+      background: var(--border-doc);
+      margin-bottom: 22px;
     }
 
-    mark {
-      background: var(--mark-bg);
-      color: var(--mark-fg);
-      padding: 1px 4px;
-      border-radius: 4px;
+    .doc-section { margin-bottom: 28px; }
+    .doc-section:last-child { margin-bottom: 0; }
+
+    .doc-section-title {
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .doc-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-doc);
+    }
+
+    .doc-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .doc-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: .875rem;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+    .doc-step-num {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-bd);
+      color: var(--badge-fg);
+      font-size: .7rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+
+    .doc-note {
+      font-size: .82rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+    .doc-note-spaced { margin-top: 10px; }
+    .doc-note a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+    .doc-note a:hover { text-decoration: underline; }
+    .doc-note strong { color: var(--text); }
+
+    pre.doc-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      background: var(--code-bg);
+      border: 1px solid var(--code-bd);
+      border-radius: var(--r-sm);
+      padding: 14px 16px;
+      overflow-x: auto;
+      color: var(--code-fg);
+      line-height: 1.7;
+      margin-top: 8px;
+      margin-bottom: 10px;
+    }
+
+    .doc-file-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 6px;
+    }
+    .doc-file {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .82rem;
+      color: var(--text-2);
+    }
+    .doc-file code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .77rem;
+      background: var(--code-bg);
+      border: 1px solid var(--code-bd);
+      border-radius: 5px;
+      padding: 1px 7px;
+      color: var(--code-fg);
+    }
+
+    .doc-link-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .doc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--r-sm);
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-bd);
+      color: var(--badge-fg);
+      font-size: .8rem;
       font-weight: 600;
+      text-decoration: none;
+      transition: all var(--ease);
+    }
+    .doc-link:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px var(--accent-glow);
+      color: var(--text);
     }
 
     /* ── Footer ──────────────────────────────────────────────────── */
     footer {
       text-align: center;
-      padding-top: 44px;
-      font-size: .75rem;
+      padding-top: 52px;
+      font-size: .74rem;
       color: var(--text-3);
     }
     footer a { color: var(--text-3); text-decoration: none; transition: color var(--ease); }
@@ -442,15 +783,22 @@
     /* ── Scrollbar (dark) ────────────────────────────────────────── */
     [data-theme="dark"] ::-webkit-scrollbar { width: 6px; }
     [data-theme="dark"] ::-webkit-scrollbar-track { background: transparent; }
-    [data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 3px; }
+    [data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); border-radius: 3px; }
   </style>
 </head>
 <body>
+
+<!-- Floating background orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
 <div class="wrap">
 
   <!-- Header -->
   <header>
     <div>
+      <p class="tagline">Language · Inclusion · Awareness</p>
       <div class="logo">
         <div class="logo-gem">✦</div>
         <h1>Inclusive Writing</h1>
@@ -464,9 +812,10 @@
       <div class="badges">
         <span class="badge">⬡&nbsp; Python · WebAssembly</span>
         <span class="badge">🔒&nbsp; Zero server · Private</span>
+        <span class="badge">🌐&nbsp; Multilingual</span>
       </div>
     </div>
-    <button id="theme-btn" title="Toggle theme" aria-label="Toggle light/dark theme">🌙</button>
+    <button type="button" id="theme-btn" title="Toggle theme" aria-label="Toggle light/dark theme">🌙</button>
   </header>
 
   <!-- Loading status -->
@@ -488,19 +837,146 @@
       <label for="text">Text to analyse</label>
       <textarea id="text" placeholder="Paste or type your text here…"></textarea>
     </div>
-    <button id="analyze-btn" disabled>Analyse</button>
+    <button type="button" id="analyze-btn" disabled>Analyse</button>
     <span class="shortcut-hint">⌘ / Ctrl + Enter to analyse</span>
   </div>
 
   <!-- Results -->
   <div id="results"></div>
 
+  <!-- Documentation / Contribute panel -->
+  <div class="doc-card" id="doc-card">
+    <button type="button" class="doc-toggle" id="doc-toggle" aria-expanded="false" aria-controls="doc-body">
+      <div class="doc-toggle-left">
+        <div class="doc-icon">📖</div>
+        <div>
+          <div class="doc-toggle-title">How to contribute &amp; extend</div>
+          <div class="doc-toggle-sub">Add words, improve lists, support new languages</div>
+        </div>
+      </div>
+      <span class="doc-chevron" aria-hidden="true">▾</span>
+    </button>
+
+    <div class="doc-body" id="doc-body" role="region">
+      <div class="doc-divider"></div>
+
+      <!-- Section 1: Resource files -->
+      <div class="doc-section">
+        <div class="doc-section-title">Resource files</div>
+        <p class="doc-note">
+          Each language has its own folder under <code>inclusivewriting/resources/</code>.
+          The two main files per language are:
+        </p>
+        <ul class="doc-file-list">
+          <li class="doc-file"><span>📄</span> <code>list.json</code> — non-inclusive terms and their replacements</li>
+          <li class="doc-file"><span>📄</span> <code>pronouns.json</code> — pronoun-specific suggestions</li>
+        </ul>
+        <p class="doc-note doc-note-spaced">
+          Languages are registered in
+          <code>inclusivewriting/configuration.json</code> — this is where the app discovers which files to load.
+        </p>
+      </div>
+
+      <!-- Section 2: Add / improve an existing list -->
+      <div class="doc-section">
+        <div class="doc-section-title">Add or improve terms (existing language)</div>
+        <p class="doc-note">
+          Open the <code>list.json</code> for the language you want to improve
+          (e.g. <strong>English</strong> → <code>resources/en/list.json</code>)
+          and add a new top-level entry using this structure:
+        </p>
+        <pre class="doc-code">{
+  "phrase-to-flag": {
+    "lexeme": ["https://www.wikidata.org/wiki/Lexeme:LXXXXX"],
+    "replacement": {
+      "preferred-alternative": {
+        "lexeme": ["https://www.wikidata.org/wiki/Lexeme:LYYYYY"],
+        "references": [
+          "https://source-that-recommends-this-replacement.example/"
+        ]
+      }
+    }
+  }
+}</pre>
+        <ul class="doc-steps">
+          <li class="doc-step"><span class="doc-step-num">1</span>Use a <strong>lower-case, top-level key</strong> for the phrase to detect.</li>
+          <li class="doc-step"><span class="doc-step-num">2</span>Link <code>lexeme</code> to a Wikidata lexeme URL where one exists (use <code>[]</code> if unknown).</li>
+          <li class="doc-step"><span class="doc-step-num">3</span>Add <strong>at least one reference</strong> (news article, style guide, community discussion) per replacement.</li>
+          <li class="doc-step"><span class="doc-step-num">4</span>Validate your changes: <code>python -m unittest tests.resource_schema_test</code></li>
+          <li class="doc-step"><span class="doc-step-num">5</span>Run the full test suite: <code>python -m tests.tests</code></li>
+        </ul>
+      </div>
+
+      <!-- Section 3: Add a new language -->
+      <div class="doc-section">
+        <div class="doc-section-title">Add a new language</div>
+        <ul class="doc-steps">
+          <li class="doc-step">
+            <span class="doc-step-num">1</span>
+            Create a new folder: <code>inclusivewriting/resources/&lt;locale&gt;/</code>
+            (e.g. <code>resources/de/</code> for German).
+          </li>
+          <li class="doc-step">
+            <span class="doc-step-num">2</span>
+            Add <code>list.json</code> and/or <code>pronouns.json</code> inside that folder, following the structure above.
+          </li>
+          <li class="doc-step">
+            <span class="doc-step-num">3</span>
+            Register the locale in <code>inclusivewriting/configuration.json</code>:
+          </li>
+        </ul>
+        <pre class="doc-code">"de": [
+  "./resources/de/list.json",
+  "./resources/de/pronouns.json"
+]</pre>
+        <ul class="doc-steps">
+          <li class="doc-step">
+            <span class="doc-step-num">4</span>
+            To also translate the CLI messages, initialise a locale file with
+            <code>pybabel init -i locales/inclusivewriting.bot -d locales/ -D inclusivewriting -l de</code>,
+            then edit <code>locales/de/LC_MESSAGES/inclusivewriting.po</code>
+            and compile with <code>pybabel compile -d locales -D inclusivewriting</code>.
+          </li>
+          <li class="doc-step">
+            <span class="doc-step-num">5</span>
+            Add a <code>&lt;option&gt;</code> for the new language to the <code>&lt;select&gt;</code> in <code>docs/index.html</code>.
+          </li>
+          <li class="doc-step">
+            <span class="doc-step-num">6</span>
+            Run the schema validator and full test suite before opening a pull request.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Section 4: Quick links -->
+      <div class="doc-section">
+        <div class="doc-section-title">Useful links</div>
+        <div class="doc-link-row">
+          <a class="doc-link" href="https://github.com/johnsamuelwrites/inclusive/blob/master/CONTRIBUTE.md" target="_blank" rel="noopener">
+            📋 Full CONTRIBUTE.md
+          </a>
+          <a class="doc-link" href="https://github.com/johnsamuelwrites/inclusive/blob/master/inclusivewriting/resources/en/list.json" target="_blank" rel="noopener">
+            📄 English list.json
+          </a>
+          <a class="doc-link" href="https://github.com/johnsamuelwrites/inclusive/blob/master/inclusivewriting/configuration.json" target="_blank" rel="noopener">
+            ⚙ configuration.json
+          </a>
+          <a class="doc-link" href="https://github.com/johnsamuelwrites/inclusive/blob/master/inclusivewriting/resources/fr/list.json" target="_blank" rel="noopener">
+            📄 French list.json
+          </a>
+        </div>
+      </div>
+    </div><!-- /.doc-body -->
+  </div><!-- /.doc-card -->
+
   <footer>
     Powered by <a href="https://pyodide.org" target="_blank" rel="noopener">Pyodide</a>
-    &nbsp;·&nbsp; inclusivewriting
+    &nbsp;·&nbsp;
+    <a href="https://github.com/johnsamuelwrites/inclusive" target="_blank" rel="noopener">inclusivewriting on GitHub</a>
   </footer>
 
-</div>
+</div><!-- /.wrap -->
+
 <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
 <script>
 (async () => {
@@ -519,6 +995,14 @@
     html.setAttribute("data-theme", next);
     themeBtn.textContent = next === "dark" ? "☀️" : "🌙";
     localStorage.setItem("iw-theme", next);
+  });
+
+  /* ── Docs accordion ─────────────────────────────────────────────── */
+  const docCard   = document.getElementById("doc-card");
+  const docToggle = document.getElementById("doc-toggle");
+  docToggle.addEventListener("click", () => {
+    const open = docCard.classList.toggle("open");
+    docToggle.setAttribute("aria-expanded", open ? "true" : "false");
   });
 
   /* ── Refs ──────────────────────────────────────────────────────── */
@@ -574,14 +1058,16 @@
       </li>`;
     }).join("");
 
+    /* Text preview appears ABOVE the issues list */
     resultsEl.innerHTML = `<div class="card">
       <div class="result-header">
         <span class="count-pill">${entries.length}</span>
         <span class="result-label">issue${entries.length > 1 ? "s" : ""} found</span>
       </div>
-      <ul class="issue-list">${rows}</ul>
       <p class="preview-title">Your text — issues highlighted</p>
       <div class="text-preview">${highlight(data.updated_text)}</div>
+      <p class="issues-label">Suggestions</p>
+      <ul class="issue-list">${rows}</ul>
     </div>`;
   }
 
