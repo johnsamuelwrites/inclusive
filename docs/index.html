@@ -265,11 +265,12 @@
     await pyodide.loadPackage("micropip");
 
     setStatus("Installing inclusivewriting…");
-    // The wheel is served alongside this page (built by CI).
-    // deps=False avoids pulling rich/typer/babel since the core API doesn't need them.
+    // Fetch the manifest written by CI to get the exact wheel filename.
+    // micropip requires the full PEP 427 name (name-ver-pytag-abitag-platform.whl).
+    const { wheel } = await fetch("./wheel.json").then(r => r.json());
     await pyodide.runPythonAsync(`
 import micropip
-await micropip.install("./inclusivewriting.whl", deps=False)
+await micropip.install("./${wheel}", deps=False)
 `);
 
     statusEl.classList.add("hidden");

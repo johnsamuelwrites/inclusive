@@ -63,7 +63,9 @@ jobs:
       run: |
         pip install build
         python -m build --wheel
-        cp dist/inclusivewriting-*.whl docs/inclusivewriting.whl
+        WHEEL=$(ls dist/inclusivewriting-*.whl | xargs basename)
+        cp "dist/$WHEEL" "docs/$WHEEL"
+        echo "{\"wheel\": \"$WHEEL\"}" > docs/wheel.json
     - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v3
       with:
