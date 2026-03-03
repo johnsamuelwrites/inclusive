@@ -17,6 +17,11 @@ The application is configurable and it permits the users to add
 * A multilingual rule-pack loader/validator (`inclusivewriting/rulepacks.py`) that reads resources from `configuration.json`.
 * Backward-compatible suggestion APIs in `inclusivewriting/suggestions.py` built on top of rule-packs.
 
+## Web Application
+A browser-based interface is available in [`docs/index.html`](docs/index.html).
+It runs entirely client-side via [Pyodide](https://pyodide.org) (Python compiled to WebAssembly) — no data leaves the device.
+Supported languages in the web interface match the CLI: `en` (English) and `fr` (French).
+
 ## Usage
 To use `inclusivewriting`, specify the language and enter a text
 
@@ -26,8 +31,7 @@ python -m inclusivewriting en
 
 ![Running inclusivewriting](https://raw.githubusercontent.com/johnsamuelwrites/inclusive/master/inclusivewriting/screenshot.png "Running inclusivewriting")
 
-Here, `en` corresponds to the English language.
-
+Here, `en` corresponds to the English language. Use `fr` for French.
 
 It is also possible to specify a file.
 
@@ -69,7 +73,7 @@ There are three ways to contribute:
 * Update existing lists of already existing languages. For example, in [English](./inclusivewriting/resources/en/list.json).
 * Translate `inclusivewriting`. Check existing or add new [locales](./inclusivewriting/locales).
 
-A detailed desciption is present [here](./inclusivewriting/CONTRIBUTE.md).
+A detailed description is present [here](./CONTRIBUTE.md).
 
 ## Test cases and coverage
 All the test cases can be run in  the following manner
