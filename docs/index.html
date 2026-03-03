@@ -230,13 +230,17 @@
   }
 
   function renderResults(data) {
-    if (data.found.length === 0) {
+    // Use suggestions as the single source of truth — found may differ when
+    // a phrase appears multiple times (set deduplication) or via a library
+    // edge-case, while suggestions always reflects what is actually displayed.
+    const entries = Object.entries(data.suggestions);
+    if (entries.length === 0) {
       resultsEl.innerHTML =
         `<div class="card"><div class="success">&#10003;&nbsp;No non-inclusive language detected.</div></div>`;
       return;
     }
 
-    const items = Object.entries(data.suggestions).map(([phrase, repls]) => {
+    const items = entries.map(([phrase, repls]) => {
       const replHtml = repls.length
         ? repls.map(r => `<span class="issue-replacement">${escHtml(r)}</span>`).join(",&nbsp;")
         : "<em>no suggestion available</em>";
@@ -248,7 +252,7 @@
     }).join("");
 
     resultsEl.innerHTML = `<div class="card">
-      <p class="issue-count"><strong>${data.found.length}</strong> issue(s) found</p>
+      <p class="issue-count"><strong>${entries.length}</strong> issue(s) found</p>
       <ul class="issue-list">${items}</ul>
       <h2>Your text &mdash; issues highlighted</h2>
       <div class="text-preview">${highlightChanges(data.updated_text)}</div>

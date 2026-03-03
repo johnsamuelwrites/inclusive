@@ -370,5 +370,187 @@
 				]
 			}
 		}
+	},
+	"dummy": {
+		"lexeme": [],
+		"replacement": {
+			"placeholder": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"stub": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"example": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"cripple": {
+		"lexeme": [],
+		"replacement": {
+			"limit": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"restrict": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"crippled": {
+		"lexeme": [],
+		"replacement": {
+			"limited": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"restricted": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"lame": {
+		"lexeme": [],
+		"replacement": {
+			"weak": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"inadequate": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"poor": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"fireman": {
+		"lexeme": [],
+		"replacement": {
+			"firefighter": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"policeman": {
+		"lexeme": [],
+		"replacement": {
+			"police officer": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"officer": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"salesman": {
+		"lexeme": [],
+		"replacement": {
+			"salesperson": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"sales representative": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"spokesman": {
+		"lexeme": [],
+		"replacement": {
+			"spokesperson": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"representative": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"sportsmanship": {
+		"lexeme": [],
+		"replacement": {
+			"fair play": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"integrity": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
+	},
+	"workmanship": {
+		"lexeme": [],
+		"replacement": {
+			"craft": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"quality": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			},
+			"skill": {
+				"lexeme": [],
+				"references": [
+					"https://inclusivenaming.org/word-lists/"
+				]
+			}
+		}
 	}
 }
