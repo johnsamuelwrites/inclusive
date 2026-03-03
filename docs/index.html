@@ -933,9 +933,9 @@
           <li class="doc-step">
             <span class="doc-step-num">4</span>
             To also translate the CLI messages, initialise a locale file with
-            <code>pybabel init -i locales/inclusivewriting.bot -d locales/ -D inclusivewriting -l de</code>,
-            then edit <code>locales/de/LC_MESSAGES/inclusivewriting.po</code>
-            and compile with <code>pybabel compile -d locales -D inclusivewriting</code>.
+            <code>pybabel init -i inclusivewriting/locales/inclusivewriting.bot -d inclusivewriting/locales/ -D inclusivewriting -l de</code>,
+            then edit <code>inclusivewriting/locales/de/LC_MESSAGES/inclusivewriting.po</code>
+            and compile with <code>pybabel compile -d inclusivewriting/locales -D inclusivewriting</code>.
           </li>
           <li class="doc-step">
             <span class="doc-step-num">5</span>
@@ -1107,11 +1107,13 @@ await micropip.install("./${wheel}", deps=False)
         const raw = await pyodide.runPythonAsync(`
 import json
 from inclusivewriting.suggestions import detect_and_get_suggestions
-_, suggestions, updated_text = detect_and_get_suggestions(_lang, _text)
+used, suggestions, updated_text = detect_and_get_suggestions(_lang, _text)
+used_lower = {m.lower() for m in used}
 json.dumps({
     "suggestions": {
         phrase: [r.get_value() for r in s.get_replacement_lexemes()]
         for phrase, s in suggestions.items()
+        if phrase in used_lower
     },
     "updated_text": updated_text,
 })
